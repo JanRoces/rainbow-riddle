@@ -1,0 +1,7 @@
+.container-selection {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 10px;
+}

@@ -1,31 +1,38 @@
-const COLOR = {
+export const COLOR = {
   RED: {
-    name: 'red',
     hex: '#FF0000',
+    name: 'red',
+    symbol: 'R',
   },
   ORANGE: {
-    name: 'orange',
     hex: '#FFA500',
+    name: 'orange',
+    symbol: 'O',
   },
   YELLOW: {
-    name: 'yellow',
     hex: '#FFFF00',
+    name: 'yellow',
+    symbol: 'Y',
   },
   GREEN: {
-    name: 'green',
     hex: '#008000',
+    name: 'green',
+    symbol: 'G',
   },
   BLUE: {
-    name: 'blue',
     hex: '#0000FF',
+    name: 'blue',
+    symbol: 'B',
   },
   INDIGO: {
-    name: 'indigo',
     hex: '#4B0082',
+    name: 'indigo',
+    symbol: 'I',
   },
   VIOLET: {
-    name: 'violet',
     hex: '#EE82EE',
+    name: 'violet',
+    symbol: 'V',
   },
 };
 
