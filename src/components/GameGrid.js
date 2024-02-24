@@ -1,4 +1,5 @@
 import React from 'react';
+import ColorSquare from './ColorSquare';
 import '../styles/GameGrid.css';
 
 function GameGrid() {
@@ -11,7 +12,7 @@ function GameGrid() {
     for (let i = 0; i < columnSize; i++) {
       const key = 'row-' + rowIndex + 'column-' + i;
 
-      columns.push(<div key={key} className="color-square"></div>);
+      columns.push(<ColorSquare key={key} className="color-square" />);
     }
 
     columns.push(<div key={'checker-' + rowIndex} className="checker"></div>);
