@@ -1,0 +1,23 @@
+.grid-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    padding-top: 10px;
+    border-right: 1px solid #3a3a3c;
+}
+.color-square {
+    align-items: center;
+    color: white;
+    border: 1px solid #3a3a3c;
+    border-radius: 10px;
+    display: flex;
+    height: 52px;
+    justify-content: center;
+    width: 52px;
+}
+
+.checker {
+    height: 52px;
+    width: 52px;
+}
