@@ -3,17 +3,20 @@ import ColorSquare from './ColorSquare';
 import '../styles/GameGrid.css';
 import Checker from './Checker';
 
-function GameGrid() {
+function GameGrid({ currentRow, input }) {
   const rowSize = 8;
   const columnSize = 5;
 
-  function renderColumns(rowIndex) {
+  function renderColumns(rowIndex, showInput) {
     const columns = [];
 
     for (let i = 0; i < columnSize; i++) {
+      const color = input[i];
+      const colorObj = color && showInput ? color : {};
+
       const key = 'row-' + rowIndex + 'column-' + i;
 
-      columns.push(<ColorSquare key={key} />);
+      columns.push(<ColorSquare {...colorObj} key={key} />);
     }
 
     columns.push(<Checker key={'checker-' + rowIndex} />);
@@ -27,10 +30,11 @@ function GameGrid() {
     for (let i = 0; i < rowSize; i++) {
       const key = 'row-' + i;
       const rowIndex = i;
+      const showInput = currentRow === i;
 
       rows.push(
         <div key={key} className="grid-row">
-          {renderColumns(rowIndex)}
+          {renderColumns(rowIndex, showInput)}
         </div>
       );
     }
