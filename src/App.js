@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Logo from './components/Logo';
 import ColorSelection from './components/ColorSelection';
-import './App.css';
 import GameGrid from './components/GameGrid';
+import './App.css';
 
 function App() {
   const [input, setInput] = useState([]);
