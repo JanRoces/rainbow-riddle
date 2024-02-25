@@ -1,8 +1,12 @@
 import React from 'react';
 
-function ActionButton({ label, onDeleteColor }) {
+function ActionButton({ label, type, onDeleteColor }) {
+  function handleOnClick() {
+    return type === 'delete' ? onDeleteColor() : () => {};
+  }
+
   return (
-    <button className="button-action" onClick={() => onDeleteColor()}>
+    <button className={'button-action-' + type} onClick={() => handleOnClick()}>
       {label}
     </button>
   );

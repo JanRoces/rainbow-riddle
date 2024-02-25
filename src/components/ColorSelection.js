@@ -85,7 +85,8 @@ function ColorSelection({ input, setInput }) {
     <div className="key-board">
       <div className="container-selection">{renderButtons()}</div>
       <div className="container-action-buttons">
-        <ActionButton label="Del" onDeleteColor={deleteColor} />
+        <ActionButton label="Del" type="delete" onDeleteColor={deleteColor} />
+        <ActionButton label="Enter" type="enter" />
       </div>
     </div>
   );
