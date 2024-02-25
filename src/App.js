@@ -7,9 +7,10 @@ import './App.css';
 function App() {
   const [input, setInput] = useState([]);
   const [currentRow, setCurrentRow] = useState(0);
+  const [colorGrid, setColorGrid] = useState([]);
 
-  const props = { currentRow, input };
-  const callBacks = { setInput };
+  const props = { colorGrid, currentRow, input };
+  const callBacks = { setColorGrid, setCurrentRow, setInput };
 
   return (
     <div>
