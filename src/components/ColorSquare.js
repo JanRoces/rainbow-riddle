@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ColorSquare({ hex = 'none', input }) {
+function ColorSquare({ hex = '' }) {
   const borderColor = '#3A3A3C';
 
   return (
@@ -8,8 +8,7 @@ function ColorSquare({ hex = 'none', input }) {
       className="color-square"
       style={{
         backgroundColor: hex,
-        border:
-          hex === 'none' ? '1px solid ' + borderColor : '1px solid ' + hex,
+        border: hex === '' ? '1px solid ' + borderColor : '1px solid ' + hex,
       }}
     ></div>
   );

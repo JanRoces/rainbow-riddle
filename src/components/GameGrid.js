@@ -1,7 +1,7 @@
 import React from 'react';
 import ColorSquare from './ColorSquare';
-import '../styles/GameGrid.css';
 import Checker from './Checker';
+import '../styles/GameGrid.css';
 
 function GameGrid({ currentRow, input }) {
   const rowSize = 8;

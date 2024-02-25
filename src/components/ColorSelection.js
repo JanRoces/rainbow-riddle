@@ -16,9 +16,25 @@ function ColorSelection({ input, setInput }) {
     }
   }
 
+  function deleteColor() {
+    const len = input.length;
+
+    if (len) {
+      const inputCopy = [...input];
+      inputCopy.splice(len - 1, 1);
+      setInput(inputCopy);
+    }
+  }
+
   useEffect(() => {
     const handleKeyDown = (e) => {
-      selectColor(e.key);
+      const keyInput = e.key;
+
+      if (keyInput === 'Backspace') {
+        deleteColor();
+      } else {
+        selectColor(e.key);
+      }
     };
 
     document.addEventListener('keydown', handleKeyDown);
@@ -51,8 +67,16 @@ function ColorSelection({ input, setInput }) {
 
     const buttons = [];
 
-    buttons.push(<div className="group">{buttonGroup(0, 4)}</div>);
-    buttons.push(<div className="group">{buttonGroup(4, len)}</div>);
+    buttons.push(
+      <div className="group" key="group-1">
+        {buttonGroup(0, 4)}
+      </div>
+    );
+    buttons.push(
+      <div className="group" key="group-2">
+        {buttonGroup(4, len)}
+      </div>
+    );
 
     return buttons;
   }
@@ -61,7 +85,7 @@ function ColorSelection({ input, setInput }) {
     <div className="key-board">
       <div className="container-selection">{renderButtons()}</div>
       <div className="container-action-buttons">
-        <ActionButton label="Del" />
+        <ActionButton label="Del" onDeleteColor={deleteColor} />
       </div>
     </div>
   );
