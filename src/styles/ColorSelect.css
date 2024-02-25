@@ -1,9 +1,58 @@
+
+.button-action:hover {
+    color: white;
+}
+
+.button-action {
+    align-items: center;
+    background-color: #808080;
+    border: none;
+    border-radius: 10px;
+    color: #202124;
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    height: 52px;
+    justify-content: center;
+    vertical-align: middle;
+    width: 100px;
+}
+
+.button-color:hover {
+    color: white;
+}
+
+.button-color {
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    color: #202124;
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    height: 52px;
+    justify-content: center;
+    vertical-align: middle;
+    width: 52px;
+}
+
+.container-action-buttons {
+    display:flex;
+    justify-content: center;
+}
+
 .container-selection {
     border-top: 1px solid #3A3A3C;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
     margin: 10px 0;
     padding: 10px 10px 0;
+}
+
+.group {
+    display: flex;
+    gap: 10px;
 }

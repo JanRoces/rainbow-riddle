@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ColorButton from './ColorButton';
+import ActionButton from './ActionButton';
 import { COLORS } from '../utils/colors';
 import '../styles/ColorSelect.css';
 
@@ -28,18 +29,42 @@ function ColorSelection({ input, setInput }) {
   }, [input]);
 
   function renderButtons() {
+    const len = COLORS.length;
+
+    function buttonGroup(start = 0, end = len) {
+      const group = [];
+
+      for (let i = start; i < end; i++) {
+        const color = COLORS[i];
+
+        group.push(
+          <ColorButton
+            {...color}
+            key={color.name}
+            onSelectColor={selectColor}
+          />
+        );
+      }
+
+      return group;
+    }
+
     const buttons = [];
 
-    COLORS.forEach((color) => {
-      buttons.push(
-        <ColorButton {...color} key={color.name} onSelectColor={selectColor} />
-      );
-    });
+    buttons.push(<div className="group">{buttonGroup(0, 4)}</div>);
+    buttons.push(<div className="group">{buttonGroup(4, len)}</div>);
 
     return buttons;
   }
 
-  return <div className="container-selection">{renderButtons()}</div>;
+  return (
+    <div className="key-board">
+      <div className="container-selection">{renderButtons()}</div>
+      <div className="container-action-buttons">
+        <ActionButton label="Del" />
+      </div>
+    </div>
+  );
 }
 
 export default ColorSelection;

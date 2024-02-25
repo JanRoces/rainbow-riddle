@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/ColorButton.css';
 
 function ColorButton({ hex, symbol, onSelectColor }) {
   function selectColor(colorSymbol) {
