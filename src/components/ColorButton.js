@@ -1,9 +1,12 @@
 import React from 'react';
-import '../styles/ColorButton.css';
 
-function ColorButton({ hex, symbol }) {
+function ColorButton({ hex, symbol, onSelectColor }) {
   return (
-    <button className="button-color" style={{ backgroundColor: hex }}>
+    <button
+      className="button-color"
+      style={{ backgroundColor: hex }}
+      onClick={() => onSelectColor(symbol)}
+    >
       {symbol}
     </button>
   );
