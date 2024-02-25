@@ -14,6 +14,7 @@
     font-weight: bold;
     height: 52px;
     justify-content: center;
+    outline: none;
     vertical-align: middle;
     width: 100px;
 }
@@ -32,6 +33,7 @@
     font-weight: bold;
     height: 52px;
     justify-content: center;
+    outline: none;
     vertical-align: middle;
     width: 52px;
 }
