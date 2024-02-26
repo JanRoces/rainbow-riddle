@@ -4,7 +4,14 @@ import ActionButton from './ActionButton';
 import { COLORS } from '../utils/colors';
 import '../styles/ColorSelect.css';
 
-function ColorSelection({ input, setInput }) {
+function ColorSelection({
+  colorGrid,
+  currentRow,
+  input,
+  setColorGrid,
+  setCurrentRow,
+  setInput,
+}) {
   const maxInputLenth = 5;
 
   function selectColor(symbol) {
@@ -26,14 +33,28 @@ function ColorSelection({ input, setInput }) {
     }
   }
 
+  function checkColors() {
+    if (input.length === maxInputLenth) {
+      setColorGrid([...colorGrid, input]);
+      setCurrentRow(currentRow + 1);
+      setInput([]);
+    }
+  }
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       const keyInput = e.key;
 
-      if (keyInput === 'Backspace') {
-        deleteColor();
-      } else {
-        selectColor(e.key);
+      switch (keyInput) {
+        case 'Backspace':
+          deleteColor();
+          break;
+        case 'Enter':
+          checkColors();
+          break;
+        default:
+          selectColor(keyInput);
+          break;
       }
     };
 
@@ -85,7 +106,8 @@ function ColorSelection({ input, setInput }) {
     <div className="key-board">
       <div className="container-selection">{renderButtons()}</div>
       <div className="container-action-buttons">
-        <ActionButton label="Del" onDeleteColor={deleteColor} />
+        <ActionButton label="Del" type="delete" onDeleteColor={deleteColor} />
+        <ActionButton label="Enter" type="enter" onEnterInput={checkColors} />
       </div>
     </div>
   );
