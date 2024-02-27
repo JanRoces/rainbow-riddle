@@ -37,39 +37,53 @@ function ColorSelection({
   }
 
   function getColorCounts() {
-    const colorCounts = {};
+    const inputCount = {};
+    const secretCount = {};
+
+    input.forEach((color) => {
+      const { name } = color;
+      inputCount[name] = (inputCount[name] || 0) + 1;
+    });
 
     secret.forEach((color) => {
       const { name } = color;
-      colorCounts[name] = (colorCounts[name] || 0) + 1;
+      secretCount[name] = (secretCount[name] || 0) + 1;
     });
 
-    return colorCounts;
+    return {
+      inputCount,
+      secretCount,
+    };
   }
 
   function checkColors() {
     const result = {
-      correct: 0,
-      wrongPlace: 0,
+      correctPosition: 0,
+      correctColor: 0,
     };
 
-    const colorCounts = getColorCounts();
+    const { inputCount, secretCount } = getColorCounts();
 
     input.forEach((inputColor, index) => {
       const { name } = inputColor;
 
       if (inputColor === secret[index]) {
-        if (colorCounts[name] === 0) {
-          result.wrongPlace--;
+        if (secretCount[name] <= 0) {
+          result.correctColor--;
         }
 
-        result.correct++;
-        colorCounts[name]--;
+        result.correctPosition++;
+        secretCount[name]--;
       } else {
         secret.forEach((secretColor) => {
-          if (inputColor === secretColor && colorCounts[name] > 0) {
-            result.wrongPlace++;
-            colorCounts[name]--;
+          if (
+            inputColor === secretColor &&
+            secretCount[name] > 0 &&
+            inputCount[name] > 0
+          ) {
+            result.correctColor++;
+            secretCount[name]--;
+            inputCount[name]--;
           }
         });
       }
