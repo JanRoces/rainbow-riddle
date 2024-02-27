@@ -8,9 +8,12 @@ function ColorSelection({
   colorGrid,
   currentRow,
   input,
+  resultGrid,
+  secret,
   setColorGrid,
   setCurrentRow,
   setInput,
+  setResultGrid,
 }) {
   const maxInputLenth = 5;
 
@@ -33,9 +36,54 @@ function ColorSelection({
     }
   }
 
+  function getColorCounts() {
+    const colorCounts = {};
+
+    secret.forEach((color) => {
+      const { name } = color;
+      colorCounts[name] = (colorCounts[name] || 0) + 1;
+    });
+
+    return colorCounts;
+  }
+
   function checkColors() {
+    const result = {
+      correct: 0,
+      wrongPlace: 0,
+    };
+
+    const colorCounts = getColorCounts();
+
+    input.forEach((inputColor, index) => {
+      const { name } = inputColor;
+
+      if (inputColor === secret[index]) {
+        if (colorCounts[name] === 0) {
+          result.wrongPlace--;
+        }
+
+        result.correct++;
+        colorCounts[name]--;
+      } else {
+        secret.forEach((secretColor) => {
+          if (inputColor === secretColor && colorCounts[name] > 0) {
+            result.wrongPlace++;
+            colorCounts[name]--;
+          }
+        });
+      }
+    });
+
+    return result;
+  }
+
+  function enterColors() {
     if (input.length === maxInputLenth) {
+      const result = checkColors();
+
       setColorGrid([...colorGrid, input]);
+      setResultGrid([...resultGrid, result]);
       setCurrentRow(currentRow + 1);
       setInput([]);
     }
@@ -50,7 +98,7 @@ function ColorSelection({
           deleteColor();
           break;
         case 'Enter':
-          checkColors();
+          enterColors();
           break;
         default:
           selectColor(keyInput);
@@ -107,7 +155,7 @@ function ColorSelection({
       <div className="container-selection">{renderButtons()}</div>
       <div className="container-action-buttons">
         <ActionButton label="Del" type="delete" onDeleteColor={deleteColor} />
-        <ActionButton label="Enter" type="enter" onEnterInput={checkColors} />
+        <ActionButton label="Enter" type="enter" onEnterInput={enterColors} />
       </div>
     </div>
   );
