@@ -3,12 +3,9 @@ import Logo from './components/Logo';
 import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import './App.css';
-import { COLOR, COLORS } from './utils/colors';
+import { COLORS } from './utils/colors';
 
-// const secret = getSecretCombination();
-const secret = [COLOR.RED, COLOR.RED, COLOR.BLUE, COLOR.GREEN, COLOR.BLUE];
-
-console.log('secret :>> ', secret);
+const secret = getSecretCombination();
 
 function getSecretCombination() {
   const maxInputLenth = 5;
