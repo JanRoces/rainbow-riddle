@@ -8,9 +8,12 @@ function ColorSelection({
   colorGrid,
   currentRow,
   input,
+  resultGrid,
+  secret,
   setColorGrid,
   setCurrentRow,
   setInput,
+  setResultGrid,
 }) {
   const maxInputLenth = 5;
 
@@ -33,9 +36,68 @@ function ColorSelection({
     }
   }
 
+  function getColorCounts() {
+    const inputCount = {};
+    const secretCount = {};
+
+    input.forEach((color) => {
+      const { name } = color;
+      inputCount[name] = (inputCount[name] || 0) + 1;
+    });
+
+    secret.forEach((color) => {
+      const { name } = color;
+      secretCount[name] = (secretCount[name] || 0) + 1;
+    });
+
+    return {
+      inputCount,
+      secretCount,
+    };
+  }
+
   function checkColors() {
+    const result = {
+      correctPosition: 0,
+      correctColor: 0,
+    };
+
+    const { inputCount, secretCount } = getColorCounts();
+
+    input.forEach((inputColor, index) => {
+      const { name } = inputColor;
+
+      if (inputColor === secret[index]) {
+        if (secretCount[name] <= 0) {
+          result.correctColor--;
+        }
+
+        result.correctPosition++;
+        secretCount[name]--;
+      } else {
+        secret.forEach((secretColor) => {
+          if (
+            inputColor === secretColor &&
+            secretCount[name] > 0 &&
+            inputCount[name] > 0
+          ) {
+            result.correctColor++;
+            secretCount[name]--;
+            inputCount[name]--;
+          }
+        });
+      }
+    });
+
+    return result;
+  }
+
+  function enterColors() {
     if (input.length === maxInputLenth) {
+      const result = checkColors();
+
       setColorGrid([...colorGrid, input]);
+      setResultGrid([...resultGrid, result]);
       setCurrentRow(currentRow + 1);
       setInput([]);
     }
@@ -50,7 +112,7 @@ function ColorSelection({
           deleteColor();
           break;
         case 'Enter':
-          checkColors();
+          enterColors();
           break;
         default:
           selectColor(keyInput);
@@ -107,7 +169,7 @@ function ColorSelection({
       <div className="container-selection">{renderButtons()}</div>
       <div className="container-action-buttons">
         <ActionButton label="Del" type="delete" onDeleteColor={deleteColor} />
-        <ActionButton label="Enter" type="enter" onEnterInput={checkColors} />
+        <ActionButton label="Enter" type="enter" onEnterInput={enterColors} />
       </div>
     </div>
   );

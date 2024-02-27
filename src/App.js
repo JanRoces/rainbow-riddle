@@ -3,14 +3,32 @@ import Logo from './components/Logo';
 import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import './App.css';
+import { COLORS } from './utils/colors';
+
+const secret = getSecretCombination();
+
+function getSecretCombination() {
+  const maxInputLenth = 5;
+  const secretColors = [];
+
+  for (let i = 0; i < maxInputLenth; i++) {
+    const randomIndex = Math.floor(Math.random() * COLORS.length);
+    const randomColor = COLORS[randomIndex];
+
+    secretColors.push(randomColor);
+  }
+
+  return secretColors;
+}
 
 function App() {
   const [input, setInput] = useState([]);
   const [currentRow, setCurrentRow] = useState(0);
   const [colorGrid, setColorGrid] = useState([]);
+  const [resultGrid, setResultGrid] = useState([]);
 
-  const props = { colorGrid, currentRow, input };
-  const callBacks = { setColorGrid, setCurrentRow, setInput };
+  const props = { colorGrid, currentRow, input, resultGrid, secret };
+  const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
 
   return (
     <div>
