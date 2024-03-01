@@ -21,14 +21,35 @@ function getSecretCombination() {
   return secretColors;
 }
 
+console.log('secret :>> ', secret);
+
 function App() {
   const [input, setInput] = useState([]);
   const [currentRow, setCurrentRow] = useState(0);
   const [colorGrid, setColorGrid] = useState([]);
   const [resultGrid, setResultGrid] = useState([]);
+  const [status, setStatus] = useState('');
 
   const props = { colorGrid, currentRow, input, resultGrid, secret };
-  const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
+  const callBacks = {
+    setColorGrid,
+    setCurrentRow,
+    setInput,
+    setResultGrid,
+  };
+
+  if (status === '' && currentRow > 0) {
+    const index = currentRow - 1;
+    const correct = resultGrid[index].correctPosition;
+
+    if (resultGrid && correct === 5) {
+      setStatus('win');
+    } else if (currentRow === 8) {
+      setStatus('lose');
+    }
+  }
+
+  console.log('status :>> ', status);
 
   return (
     <div>

@@ -93,7 +93,7 @@ function ColorSelection({
   }
 
   function enterColors() {
-    if (input.length === maxInputLenth) {
+    if (input.length === maxInputLenth && currentRow < 8) {
       const result = checkColors();
 
       setColorGrid([...colorGrid, input]);
