@@ -30,7 +30,7 @@ function App() {
   const [resultGrid, setResultGrid] = useState([]);
   const [status, setStatus] = useState('');
 
-  const props = { colorGrid, currentRow, input, resultGrid, secret };
+  const props = { colorGrid, currentRow, input, resultGrid, secret, status };
   const callBacks = {
     setColorGrid,
     setCurrentRow,

@@ -10,6 +10,7 @@ function ColorSelection({
   input,
   resultGrid,
   secret,
+  status,
   setColorGrid,
   setCurrentRow,
   setInput,
@@ -105,7 +106,7 @@ function ColorSelection({
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (currentRow < 8) {
+      if (currentRow < 8 && status === '') {
         const keyInput = e.key;
 
         switch (keyInput) {
