@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div>
-      <Logo />
+      <Logo message={status} />
       <GameGrid {...props} />
       <ColorSelection {...props} {...callBacks} />
     </div>
