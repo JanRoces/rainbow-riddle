@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import Logo from './components/Logo';
 import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
-import './App.css';
-import { COLORS } from './utils/colors';
 import SecretCode from './components/SecretCode';
+import ActionButton from './components/ActionButton';
+import { COLORS } from './utils/colors';
+import './App.css';
 
 const secret = getSecretCombination();
 
@@ -50,6 +51,10 @@ function App() {
     }
   }
 
+  function playAgain() {
+    console.log('helo worl');
+  }
+
   function renderSelectionOrSecret() {
     return status ? (
       <SecretCode secret={secret} />
@@ -58,11 +63,18 @@ function App() {
     );
   }
 
+  function renderPlayAgainButton() {
+    return (
+      <ActionButton label="Play Again" type="play" onPlayAgain={playAgain} />
+    );
+  }
+
   return (
     <div>
       <Logo message={status} />
       <GameGrid {...props} />
       {renderSelectionOrSecret()}
+      {renderPlayAgainButton()}
     </div>
   );
 }
