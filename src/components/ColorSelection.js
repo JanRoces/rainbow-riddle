@@ -10,6 +10,7 @@ function ColorSelection({
   input,
   resultGrid,
   secret,
+  status,
   setColorGrid,
   setCurrentRow,
   setInput,
@@ -93,7 +94,7 @@ function ColorSelection({
   }
 
   function enterColors() {
-    if (input.length === maxInputLenth) {
+    if (input.length === maxInputLenth && currentRow < 8) {
       const result = checkColors();
 
       setColorGrid([...colorGrid, input]);
@@ -105,18 +106,20 @@ function ColorSelection({
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      const keyInput = e.key;
+      if (currentRow < 8 && status === '') {
+        const keyInput = e.key;
 
-      switch (keyInput) {
-        case 'Backspace':
-          deleteColor();
-          break;
-        case 'Enter':
-          enterColors();
-          break;
-        default:
-          selectColor(keyInput);
-          break;
+        switch (keyInput) {
+          case 'Backspace':
+            deleteColor();
+            break;
+          case 'Enter':
+            enterColors();
+            break;
+          default:
+            selectColor(keyInput);
+            break;
+        }
       }
     };
 
