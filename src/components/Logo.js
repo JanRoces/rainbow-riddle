@@ -27,24 +27,31 @@ function Logo({ message }) {
   }
 
   function renderWin() {
-    const string = 'You Win';
+    const string = 'You Win!';
     const title = [];
+    let index = 0;
 
-    string.split('').forEach((letter, index) => {
-      const color = COLORS[index];
+    string.split('').forEach((letter) => {
+      if (letter !== ' ') {
+        const color = COLORS[index];
 
-      title.push(
-        <span key={color.name} style={{ color: color.hex }}>
-          {letter}
-        </span>
-      );
+        title.push(
+          <span key={color.name} style={{ color: color.hex }}>
+            {letter}
+          </span>
+        );
+
+        index++;
+      } else {
+        title.push(letter);
+      }
     });
 
     return title;
   }
 
   function renderLose() {
-    return <span style={{ color: 'white' }}>You Lose</span>;
+    return <span style={{ color: 'white' }}>You Lose!</span>;
   }
 
   function renderTitle() {

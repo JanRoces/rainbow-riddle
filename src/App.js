@@ -4,6 +4,7 @@ import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import './App.css';
 import { COLORS } from './utils/colors';
+import SecretCode from './components/SecretCode';
 
 const secret = getSecretCombination();
 
@@ -49,11 +50,19 @@ function App() {
     }
   }
 
+  function renderSelectionOrSecret() {
+    return status ? (
+      <SecretCode secret={secret} />
+    ) : (
+      <ColorSelection {...props} {...callBacks} />
+    );
+  }
+
   return (
     <div>
       <Logo message={status} />
       <GameGrid {...props} />
-      <ColorSelection {...props} {...callBacks} />
+      {renderSelectionOrSecret()}
     </div>
   );
 }
