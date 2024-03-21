@@ -38,7 +38,5 @@ export const COLOR = {
 
 export const COLORS = Object.values(COLOR);
 
-export const EMPTY_RESULTS = Array(8).fill({
-  correctColor: 0,
-  correctPosition: 0,
-});
+export const EMPTY_RESULT_COLOR = '#202124';
+export const EMPTY_RESULT_OUTLINE_COLOR = '#3A3A3C';

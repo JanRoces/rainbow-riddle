@@ -16,12 +16,7 @@ function App() {
   const [status, setStatus] = useState('');
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
-  const callBacks = {
-    setColorGrid,
-    setCurrentRow,
-    setInput,
-    setResultGrid,
-  };
+  const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
 
   if (status === '' && currentRow > 0) {
     const index = currentRow - 1;
