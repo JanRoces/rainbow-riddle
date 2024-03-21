@@ -2,29 +2,13 @@ import React, { useState } from 'react';
 import Logo from './components/Logo';
 import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
-import './App.css';
-import { COLORS } from './utils/colors';
 import SecretCode from './components/SecretCode';
-
-const secret = getSecretCombination();
-
-function getSecretCombination() {
-  const maxInputLenth = 5;
-  const secretColors = [];
-
-  for (let i = 0; i < maxInputLenth; i++) {
-    const randomIndex = Math.floor(Math.random() * COLORS.length);
-    const randomColor = COLORS[randomIndex];
-
-    secretColors.push(randomColor);
-  }
-
-  return secretColors;
-}
-
-console.log('secret :>> ', secret);
+import ActionButton from './components/ActionButton';
+import { COLORS } from './utils/colors';
+import './App.css';
 
 function App() {
+  const [secret, setSecret] = useState(getSecretCombination());
   const [input, setInput] = useState([]);
   const [currentRow, setCurrentRow] = useState(0);
   const [colorGrid, setColorGrid] = useState([]);
@@ -32,12 +16,7 @@ function App() {
   const [status, setStatus] = useState('');
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
-  const callBacks = {
-    setColorGrid,
-    setCurrentRow,
-    setInput,
-    setResultGrid,
-  };
+  const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
 
   if (status === '' && currentRow > 0) {
     const index = currentRow - 1;
@@ -50,6 +29,29 @@ function App() {
     }
   }
 
+  function getSecretCombination() {
+    const maxInputLenth = 5;
+    const secretColors = [];
+
+    for (let i = 0; i < maxInputLenth; i++) {
+      const randomIndex = Math.floor(Math.random() * COLORS.length);
+      const randomColor = COLORS[randomIndex];
+
+      secretColors.push(randomColor);
+    }
+
+    return secretColors;
+  }
+
+  function playAgain() {
+    setSecret(getSecretCombination());
+    setInput([]);
+    setCurrentRow(0);
+    setColorGrid([]);
+    setResultGrid([]);
+    setStatus('');
+  }
+
   function renderSelectionOrSecret() {
     return status ? (
       <SecretCode secret={secret} />
@@ -58,11 +60,22 @@ function App() {
     );
   }
 
+  function renderPlayAgainButton() {
+    return status !== '' ? (
+      <div className="container-button">
+        <ActionButton label="Play Again" type="play" onPlayAgain={playAgain} />
+      </div>
+    ) : (
+      ''
+    );
+  }
+
   return (
     <div>
       <Logo message={status} />
       <GameGrid {...props} />
       {renderSelectionOrSecret()}
+      {renderPlayAgainButton()}
     </div>
   );
 }

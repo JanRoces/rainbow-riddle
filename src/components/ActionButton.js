@@ -1,8 +1,23 @@
 import React from 'react';
 
-function ActionButton({ label, type, onDeleteColor, onEnterInput }) {
+function ActionButton({
+  label,
+  type,
+  onDeleteColor,
+  onEnterInput,
+  onPlayAgain,
+}) {
   function handleOnClick() {
-    return type === 'delete' ? onDeleteColor() : onEnterInput();
+    switch (type) {
+      case 'delete':
+        return onDeleteColor();
+      case 'enter':
+        return onEnterInput();
+      case 'play':
+        return onPlayAgain();
+      default:
+        break;
+    }
   }
 
   return (

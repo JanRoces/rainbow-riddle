@@ -1,7 +1,14 @@
 import React from 'react';
+import {
+  EMPTY_RESULT_COLOR,
+  EMPTY_RESULT_OUTLINE_COLOR,
+} from '../utils/colors';
 
 function Checker({ correctPosition, correctColor }) {
-  const defaultColors = ['none', 'none', 'none', 'none', 'none'];
+  const defaultColors = Array(5).fill({
+    fill: EMPTY_RESULT_COLOR,
+    outline: EMPTY_RESULT_OUTLINE_COLOR,
+  });
 
   let pos = correctPosition;
   let col = correctColor;
@@ -9,10 +16,16 @@ function Checker({ correctPosition, correctColor }) {
   const circleColors = defaultColors.map((color) => {
     if (pos) {
       pos--;
-      return 'black';
+      return {
+        fill: 'black',
+        outline: 'black',
+      };
     } else if (col) {
       col--;
-      return 'white';
+      return {
+        fill: 'white',
+        outline: 'white',
+      };
     }
 
     return color;
@@ -21,8 +34,8 @@ function Checker({ correctPosition, correctColor }) {
   function setStyle(index) {
     const color = circleColors[index];
     return {
-      backgroundColor: color,
-      border: '1px solid ' + color,
+      backgroundColor: color.fill,
+      border: `1px solid ${color.outline}`,
     };
   }
 

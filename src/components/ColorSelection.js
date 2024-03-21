@@ -3,6 +3,7 @@ import ColorButton from './ColorButton';
 import ActionButton from './ActionButton';
 import { COLORS } from '../utils/colors';
 import '../styles/ColorSelect.css';
+import '../styles/ActionButton.css';
 
 function ColorSelection({
   colorGrid,
