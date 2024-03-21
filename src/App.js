@@ -7,25 +7,8 @@ import ActionButton from './components/ActionButton';
 import { COLORS } from './utils/colors';
 import './App.css';
 
-const secret = getSecretCombination();
-
-function getSecretCombination() {
-  const maxInputLenth = 5;
-  const secretColors = [];
-
-  for (let i = 0; i < maxInputLenth; i++) {
-    const randomIndex = Math.floor(Math.random() * COLORS.length);
-    const randomColor = COLORS[randomIndex];
-
-    secretColors.push(randomColor);
-  }
-
-  return secretColors;
-}
-
-console.log('secret :>> ', secret);
-
 function App() {
+  const [secret, setSecret] = useState(getSecretCombination());
   const [input, setInput] = useState([]);
   const [currentRow, setCurrentRow] = useState(0);
   const [colorGrid, setColorGrid] = useState([]);
@@ -51,8 +34,27 @@ function App() {
     }
   }
 
+  function getSecretCombination() {
+    const maxInputLenth = 5;
+    const secretColors = [];
+
+    for (let i = 0; i < maxInputLenth; i++) {
+      const randomIndex = Math.floor(Math.random() * COLORS.length);
+      const randomColor = COLORS[randomIndex];
+
+      secretColors.push(randomColor);
+    }
+
+    return secretColors;
+  }
+
   function playAgain() {
-    console.log('helo worl');
+    setSecret(getSecretCombination());
+    setInput([]);
+    setCurrentRow(0);
+    setColorGrid([]);
+    setResultGrid([]);
+    setStatus('');
   }
 
   function renderSelectionOrSecret() {
@@ -73,6 +75,7 @@ function App() {
     );
   }
 
+  console.log('secret :>> ', secret);
   return (
     <div>
       <Logo message={status} />

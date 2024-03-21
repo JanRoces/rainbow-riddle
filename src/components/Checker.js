@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Checker({ correctPosition, correctColor }) {
+function Checker({ correctPosition, correctColor, currentRow }) {
   const defaultColors = ['none', 'none', 'none', 'none', 'none'];
 
   let pos = correctPosition;
@@ -22,9 +22,15 @@ function Checker({ correctPosition, correctColor }) {
     const color = circleColors[index];
     return {
       backgroundColor: color,
-      border: '1px solid ' + color,
+      border: `1px solid ${color}`,
     };
   }
+  console.log('---------');
+  console.log('currentRow :>> ', currentRow);
+  console.log('correctPosition :>> ', correctPosition);
+  console.log('correctColor :>> ', correctColor);
+  console.log('circleColors :>> ', circleColors);
+  console.log('---------');
 
   return (
     <div className="checker">

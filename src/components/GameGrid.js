@@ -28,7 +28,13 @@ function GameGrid({ colorGrid, currentRow, input, resultGrid }) {
 
     let result = resultGrid[rowIndex] ? resultGrid[rowIndex] : {};
 
-    columns.push(<Checker {...result} key={'checker-' + rowIndex} />);
+    columns.push(
+      <Checker
+        {...result}
+        currentRow={currentRow}
+        key={'checker-' + rowIndex}
+      />
+    );
 
     return columns;
   }
