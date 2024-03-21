@@ -70,7 +70,6 @@ function App() {
     );
   }
 
-  console.log('secret :>> ', secret);
   return (
     <div>
       <Logo message={status} />
