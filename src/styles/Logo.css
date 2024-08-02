@@ -1,8 +1,25 @@
-.container-logo {
+.container-header {
+    align-items: center;
     border-bottom: 1px solid #3A3A3C;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.container-icon {
+    color: white;
+    flex-shrink: 0;
+    font-size: 24px;
+    padding: 15px;
+}
+
+.container-logo {
     font-family: monospace;
     font-size: 32px;
     font-weight: bold;
+    left: 50%;
     padding: 15px 0px;
+    position: absolute;
     text-align: center;
+    transform: translateX(-50%);
 }

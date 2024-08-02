@@ -65,7 +65,20 @@ function Logo({ message }) {
     }
   }
 
-  return <div className="container-logo">{renderTitle()}</div>;
+  function renderHowToPlayIcon() {
+    return (
+      <span>
+        <i className="fa-solid fa-circle-question"></i>
+      </span>
+    );
+  }
+
+  return (
+    <div className="container-header">
+      <span className="container-icon">{renderHowToPlayIcon()}</span>
+      <span className="container-logo">{renderTitle()}</span>
+    </div>
+  );
 }
 
 export default Logo;
