@@ -4,6 +4,7 @@ import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import SecretCode from './components/SecretCode';
 import ActionButton from './components/ActionButton';
+import Popup from './components/Popup';
 import { COLORS } from './utils/colors';
 import './App.css';
 
@@ -71,8 +72,13 @@ function App() {
     );
   }
 
+  function renderPopup() {
+    return showHowToPlay ? <Popup /> : '';
+  }
+
   return (
     <div>
+      {renderPopup()}
       <Logo
         message={status}
         showHowToPlay={showHowToPlay}
