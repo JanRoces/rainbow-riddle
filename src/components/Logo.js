@@ -2,7 +2,11 @@ import React from 'react';
 import '../styles/Logo.css';
 import { COLORS } from '../utils/colors';
 
-function Logo({ message }) {
+function Logo({ message, showHowToPlay, onSetShowHowToPlay }) {
+  function togglePopupVisability() {
+    onSetShowHowToPlay(!showHowToPlay);
+  }
+
   function renderLogo() {
     const string = 'Rainbow';
     const title = [];
@@ -67,7 +71,7 @@ function Logo({ message }) {
 
   function renderHowToPlayIcon() {
     return (
-      <span>
+      <span onClick={() => togglePopupVisability()}>
         <i className="fa-solid fa-circle-question"></i>
       </span>
     );

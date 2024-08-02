@@ -14,6 +14,7 @@ function App() {
   const [colorGrid, setColorGrid] = useState([]);
   const [resultGrid, setResultGrid] = useState([]);
   const [status, setStatus] = useState('');
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
   const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
@@ -72,7 +73,11 @@ function App() {
 
   return (
     <div>
-      <Logo message={status} />
+      <Logo
+        message={status}
+        showHowToPlay={showHowToPlay}
+        onSetShowHowToPlay={setShowHowToPlay}
+      />
       <GameGrid {...props} />
       {renderSelectionOrSecret()}
       {renderPlayAgainButton()}
