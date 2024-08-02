@@ -3,7 +3,11 @@ import '../styles/Popup.css';
 
 const TITLE = 'How to Play';
 
-function Popup() {
+function Popup({ showHowToPlay, onSetShowHowToPlay }) {
+  function togglePopupVisability() {
+    onSetShowHowToPlay(!showHowToPlay);
+  }
+
   function renderDescription() {
     return (
       <div className="description">
@@ -31,8 +35,21 @@ function Popup() {
       </div>
     );
   }
+
+  function renderCloseIcon() {
+    return (
+      <div
+        className="container-icon-close"
+        onClick={() => togglePopupVisability()}
+      >
+        <i class="fa-solid fa-square-xmark"></i>
+      </div>
+    );
+  }
+
   return (
     <div className="container-popup">
+      {renderCloseIcon()}
       <div className="title">{TITLE}</div>
       {renderDescription()}
     </div>

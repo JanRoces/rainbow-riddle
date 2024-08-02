@@ -73,7 +73,14 @@ function App() {
   }
 
   function renderPopup() {
-    return showHowToPlay ? <Popup /> : '';
+    return showHowToPlay ? (
+      <Popup
+        showHowToPlay={showHowToPlay}
+        onSetShowHowToPlay={setShowHowToPlay}
+      />
+    ) : (
+      ''
+    );
   }
 
   return (
