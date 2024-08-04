@@ -11,12 +11,12 @@ function Popup({ showHowToPlay, onSetShowHowToPlay }) {
   function renderDescription() {
     return (
       <div className="description">
-        Welcome to Rainbow Riddle!
+        Welcome to <b>Rainbow Riddle!</b>
         <br />
         <div>
-          The objective of the game is to guess a secret five-color combination
-          within 8 attempts. The secret combination is composed of five colors,
-          and colors may repeat.
+          The objective of the game is to guess a secret{' '}
+          <b>five-color combination</b>&nbsp;within 8 attempts. The secret
+          combination is composed of five colors, and colors may repeat.
         </div>
         <br />
         <div>
@@ -42,13 +42,13 @@ function Popup({ showHowToPlay, onSetShowHowToPlay }) {
         className="container-icon-close"
         onClick={() => togglePopupVisability()}
       >
-        <i class="fa-solid fa-square-xmark"></i>
+        <i className="fa-solid fa-square-xmark"></i>
       </div>
     );
   }
 
   return (
-    <div className="container-popup">
+    <div className="popup">
       {renderCloseIcon()}
       <div className="title">{TITLE}</div>
       {renderDescription()}

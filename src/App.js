@@ -74,10 +74,12 @@ function App() {
 
   function renderPopup() {
     return showHowToPlay ? (
-      <Popup
-        showHowToPlay={showHowToPlay}
-        onSetShowHowToPlay={setShowHowToPlay}
-      />
+      <div className="container-popup">
+        <Popup
+          showHowToPlay={showHowToPlay}
+          onSetShowHowToPlay={setShowHowToPlay}
+        />
+      </div>
     ) : (
       ''
     );
