@@ -4,6 +4,7 @@ import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import SecretCode from './components/SecretCode';
 import ActionButton from './components/ActionButton';
+import Popup from './components/Popup';
 import { COLORS } from './utils/colors';
 import './App.css';
 
@@ -14,6 +15,7 @@ function App() {
   const [colorGrid, setColorGrid] = useState([]);
   const [resultGrid, setResultGrid] = useState([]);
   const [status, setStatus] = useState('');
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
   const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
@@ -70,9 +72,27 @@ function App() {
     );
   }
 
+  function renderPopup() {
+    return showHowToPlay ? (
+      <div className="container-popup">
+        <Popup
+          showHowToPlay={showHowToPlay}
+          onSetShowHowToPlay={setShowHowToPlay}
+        />
+      </div>
+    ) : (
+      ''
+    );
+  }
+
   return (
     <div>
-      <Logo message={status} />
+      {renderPopup()}
+      <Logo
+        message={status}
+        showHowToPlay={showHowToPlay}
+        onSetShowHowToPlay={setShowHowToPlay}
+      />
       <GameGrid {...props} />
       {renderSelectionOrSecret()}
       {renderPlayAgainButton()}
