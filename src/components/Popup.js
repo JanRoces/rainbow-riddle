@@ -1,14 +1,26 @@
 import React from 'react';
 import '../styles/Popup.css';
 
-const TITLE = 'How to Play';
+export const POPUP_TYPE = {
+  HOW_TO_PLAY: 'How to Play',
+  WIN_STATS: 'Win Statistics',
+};
 
-function Popup({ showHowToPlay, onSetShowHowToPlay }) {
-  function togglePopupVisability() {
-    onSetShowHowToPlay(!showHowToPlay);
+function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
+  function closePopup() {
+    switch (popup) {
+      case POPUP_TYPE.HOW_TO_PLAY:
+        toggleShowHowToPlay(false);
+        break;
+      case POPUP_TYPE.WIN_STATS:
+        toggleShowWinStats(false);
+        break;
+      default:
+        return;
+    }
   }
 
-  function renderDescription() {
+  function renderHowToPlayDescription() {
     return (
       <div className="description">
         Welcome to <b>Rainbow Riddle!</b>
@@ -38,20 +50,32 @@ function Popup({ showHowToPlay, onSetShowHowToPlay }) {
 
   function renderCloseIcon() {
     return (
-      <div
-        className="container-icon-close"
-        onClick={() => togglePopupVisability()}
-      >
+      <div className="container-icon-close" onClick={() => closePopup()}>
         <i className="fa-solid fa-square-xmark"></i>
       </div>
     );
   }
 
+  function renderTitle() {
+    return <div className="title">{popup}</div>;
+  }
+
+  function renderPopupContent() {
+    switch (popup) {
+      case POPUP_TYPE.HOW_TO_PLAY:
+        return renderHowToPlayDescription();
+      case POPUP_TYPE.WIN_STATS:
+        break;
+      default:
+        return;
+    }
+  }
+
   return (
     <div className="popup">
       {renderCloseIcon()}
-      <div className="title">{TITLE}</div>
-      {renderDescription()}
+      {renderTitle()}
+      {renderPopupContent()}
     </div>
   );
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import '../styles/Logo.css';
 import { COLORS } from '../utils/colors';
 
-function Logo({ message, showHowToPlay, onSetShowHowToPlay }) {
+function Logo({ message, showHowToPlay, onToggleShowHowToPlay }) {
   function togglePopupVisability() {
-    onSetShowHowToPlay(!showHowToPlay);
+    onToggleShowHowToPlay(!showHowToPlay);
   }
 
   function renderLogo() {
