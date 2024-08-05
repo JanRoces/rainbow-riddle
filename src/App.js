@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from './components/Logo';
 import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
@@ -7,6 +7,7 @@ import ActionButton from './components/ActionButton';
 import Popup, { POPUP_TYPE } from './components/Popup';
 import { COLORS } from './utils/colors';
 import './App.css';
+import { setGameStats } from './utils/stats';
 
 function App() {
   const [secret, setSecret] = useState(getSecretCombination());
@@ -20,6 +21,12 @@ function App() {
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
   const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
+
+  useEffect(() => {
+    if (status !== '') {
+      setGameStats(status, currentRow);
+    }
+  }, [status]);
 
   if (status === '' && currentRow > 0) {
     const index = currentRow - 1;
