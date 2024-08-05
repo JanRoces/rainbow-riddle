@@ -106,6 +106,7 @@ function App() {
       <Logo
         message={status}
         showHowToPlay={showHowToPlay}
+        showWinStats={showWinStats}
         onToggleShowHowToPlay={toggleShowHowToPlay}
         onToggleShowWinStats={toggleShowWinStats}
       />

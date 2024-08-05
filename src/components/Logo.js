@@ -1,10 +1,19 @@
 import React from 'react';
 import '../styles/Logo.css';
 import { COLORS } from '../utils/colors';
+import { POPUP_TYPE } from './Popup';
 
-function Logo({ message, showHowToPlay, onToggleShowHowToPlay }) {
-  function togglePopupVisability() {
-    onToggleShowHowToPlay(!showHowToPlay);
+function Logo({
+  message,
+  showHowToPlay,
+  showWinStats,
+  onToggleShowHowToPlay,
+  onToggleShowWinStats,
+}) {
+  function togglePopupVisability(popupType) {
+    return popupType === POPUP_TYPE.HOW_TO_PLAY
+      ? onToggleShowHowToPlay(!showHowToPlay)
+      : onToggleShowWinStats(!showWinStats);
   }
 
   function renderLogo() {
@@ -71,7 +80,7 @@ function Logo({ message, showHowToPlay, onToggleShowHowToPlay }) {
 
   function renderHowToPlayIcon() {
     return (
-      <span onClick={() => togglePopupVisability()}>
+      <span onClick={() => togglePopupVisability(POPUP_TYPE.HOW_TO_PLAY)}>
         <i className="fa-solid fa-circle-question"></i>
       </span>
     );
@@ -79,7 +88,7 @@ function Logo({ message, showHowToPlay, onToggleShowHowToPlay }) {
 
   function renderStatsIcon() {
     return (
-      <span>
+      <span onClick={() => togglePopupVisability(POPUP_TYPE.WIN_STATS)}>
         <i className="fa-solid fa-chart-pie"></i>
       </span>
     );
