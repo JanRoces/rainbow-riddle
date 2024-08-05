@@ -77,10 +77,19 @@ function Logo({ message, showHowToPlay, onToggleShowHowToPlay }) {
     );
   }
 
+  function renderStatsIcon() {
+    return (
+      <span>
+        <i className="fa-solid fa-chart-pie"></i>
+      </span>
+    );
+  }
+
   return (
     <div className="container-header">
       <span className="container-icon">{renderHowToPlayIcon()}</span>
       <span className="container-logo">{renderTitle()}</span>
+      <span className="container-icon">{renderStatsIcon()}</span>
     </div>
   );
 }
