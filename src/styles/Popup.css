@@ -48,3 +48,10 @@
     font-size: 24px;
     color: white;
 }
+
+.games-overview {
+    display: flex;
+    color: white;
+    font-weight: bold;
+    justify-content: space-evenly;
+}

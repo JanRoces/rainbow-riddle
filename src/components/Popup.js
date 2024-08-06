@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/Popup.css';
+import { PieChart } from '@mui/x-charts';
+import { COLORS } from '../utils/colors';
 
 export const POPUP_TYPE = {
   HOW_TO_PLAY: 'How to Play',
@@ -48,6 +50,51 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
     );
   }
 
+  function renderWinStats() {
+    const gameStats = JSON.parse(localStorage.getItem('gameStats')) || {
+      totalGamesPlayed: 0,
+      tries: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 },
+      loses: 0,
+    };
+
+    const { totalGamesPlayed, loses, tries } = gameStats;
+    const totalTries = Object.entries(tries);
+    const data = totalTries.map((item, index) => {
+      const color = index === 0 ? 'white' : COLORS[index - 1].name;
+      console.log('color', color);
+
+      return {
+        label: item[0],
+        value: item[1],
+        color,
+      };
+    });
+
+    const sizing = {
+      height: 200,
+      width: 200,
+    };
+
+    return (
+      <div>
+        <div className="games-overview">
+          <span>Total Games Played: {totalGamesPlayed}</span>
+          <span>Total Loses: {loses}</span>
+        </div>
+        <div>
+          <PieChart
+            series={[
+              {
+                data,
+              },
+            ]}
+            {...sizing}
+          />
+        </div>
+      </div>
+    );
+  }
+
   function renderCloseIcon() {
     return (
       <div className="container-icon-close" onClick={() => closePopup()}>
@@ -65,7 +112,7 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
       case POPUP_TYPE.HOW_TO_PLAY:
         return renderHowToPlayDescription();
       case POPUP_TYPE.WIN_STATS:
-        break;
+        return renderWinStats();
       default:
         return;
     }
