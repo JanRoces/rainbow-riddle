@@ -89,7 +89,7 @@ function Logo({
   function renderStatsIcon() {
     return (
       <span onClick={() => togglePopupVisability(POPUP_TYPE.WIN_STATS)}>
-        <i className="fa-solid fa-chart-pie"></i>
+        <i className="fa-solid fa-chart-simple"></i>
       </span>
     );
   }

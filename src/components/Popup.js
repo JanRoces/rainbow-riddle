@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Popup.css';
-import { PieChart } from '@mui/x-charts';
+import { BarChart } from '@mui/x-charts';
 import { COLORS } from '../utils/colors';
 
 export const POPUP_TYPE = {
@@ -59,21 +59,21 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
 
     const { totalGamesPlayed, loses, tries } = gameStats;
     const totalTries = Object.entries(tries);
-    const data = totalTries.map((item, index) => {
-      const color = index === 0 ? 'white' : COLORS[index - 1].name;
-      console.log('color', color);
 
-      return {
-        label: item[0],
-        value: item[1],
-        color,
-      };
+    const [dataLabels, dataValues] = totalTries.reduce(
+      (acc, [key, value]) => {
+        acc[0].push(key);
+        acc[1].push(value);
+        return acc;
+      },
+      [[], []]
+    );
+
+    const colorFills = COLORS.map((c) => {
+      return c.name;
     });
 
-    const sizing = {
-      height: 200,
-      width: 200,
-    };
+    colorFills.push('white');
 
     return (
       <div>
@@ -81,14 +81,22 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
           <span>Total Games Played: {totalGamesPlayed}</span>
           <span>Total Loses: {loses}</span>
         </div>
-        <div>
-          <PieChart
-            series={[
+        <div className="container-bar-chart">
+          <BarChart
+            className="bar-chart"
+            xAxis={[
               {
-                data,
+                scaleType: 'band',
+                data: dataLabels,
+                colorMap: {
+                  type: 'ordinal',
+                  values: dataLabels,
+                  colors: colorFills,
+                },
               },
             ]}
-            {...sizing}
+            series={[{ data: dataValues }]}
+            borderRadius={10}
           />
         </div>
       </div>

@@ -55,3 +55,7 @@
     font-weight: bold;
     justify-content: space-evenly;
 }
+
+.container-bar-chart {
+    height: 300px;
+}
