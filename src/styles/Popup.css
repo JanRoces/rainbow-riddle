@@ -49,11 +49,18 @@
     color: white;
 }
 
-.games-overview {
+.popup-header {
     display: flex;
     color: white;
     font-weight: bold;
     justify-content: space-evenly;
+}
+
+.popup-footer {
+    display: flex;
+    color: white;
+    font-weight: bold;
+    justify-content: center;
 }
 
 .container-bar-chart {

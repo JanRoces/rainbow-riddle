@@ -77,7 +77,7 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
 
     return (
       <div>
-        <div className="games-overview">
+        <div className="popup-header">
           <span>Total Games Played: {totalGamesPlayed}</span>
           <span>Total Loses: {loses}</span>
         </div>
@@ -93,12 +93,31 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
                   values: dataLabels,
                   colors: colorFills,
                 },
+                axisLabel: {
+                  style: { fill: 'white' },
+                },
+                axisLine: {
+                  stroke: 'white',
+                },
               },
             ]}
             series={[{ data: dataValues }]}
             borderRadius={10}
+            sx={{
+              '& .MuiChartsAxis-root': {
+                stroke: 'white',
+              },
+              '& .MuiChartsAxis-line': {
+                stroke: 'white',
+                strokeWidth: '2',
+              },
+              '& .MuiChartsAxis-tick': {
+                stroke: 'white',
+              },
+            }}
           />
         </div>
+        <div className="popup-footer">Number of Tries</div>
       </div>
     );
   }
