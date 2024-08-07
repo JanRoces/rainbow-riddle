@@ -79,7 +79,7 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
       <div>
         <div className="popup-header">
           <div>Total Games Played: {totalGamesPlayed}</div>
-          <div>Total Loses: {loses}</div>
+          <div>Total Losses: {loses}</div>
         </div>
         <div className="container-bar-chart">
           <BarChart
