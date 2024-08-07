@@ -52,8 +52,10 @@
 .popup-header {
     display: flex;
     color: white;
+    column-gap: 20px;
+    flex-wrap: wrap;
     font-weight: bold;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .popup-footer {

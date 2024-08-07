@@ -78,8 +78,8 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
     return (
       <div>
         <div className="popup-header">
-          <span>Total Games Played: {totalGamesPlayed}</span>
-          <span>Total Loses: {loses}</span>
+          <div>Total Games Played: {totalGamesPlayed}</div>
+          <div>Total Loses: {loses}</div>
         </div>
         <div className="container-bar-chart">
           <BarChart
@@ -93,26 +93,36 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
                   values: dataLabels,
                   colors: colorFills,
                 },
-                axisLabel: {
-                  style: { fill: 'white' },
-                },
-                axisLine: {
-                  stroke: 'white',
-                },
               },
             ]}
             series={[{ data: dataValues }]}
+            tooltip={{ trigger: 'none' }}
             borderRadius={10}
+            barLabel={(item) => {
+              return item.value;
+            }}
+            axisHighlight={{
+              x: 'none',
+              y: 'none',
+            }}
             sx={{
-              '& .MuiChartsAxis-root': {
-                stroke: 'white',
-              },
               '& .MuiChartsAxis-line': {
-                stroke: 'white',
-                strokeWidth: '2',
+                display: 'none',
               },
               '& .MuiChartsAxis-tick': {
+                display: 'none',
+              },
+              '& .MuiChartsAxis-tickLabel': {
                 stroke: 'white',
+              },
+              '& .MuiBarLabel-root': {
+                stroke: '#202124',
+              },
+              '& .MuiChartsAxis-left': {
+                display: 'none',
+              },
+              '& .MuiPopper-root': {
+                display: 'none',
               },
             }}
           />
