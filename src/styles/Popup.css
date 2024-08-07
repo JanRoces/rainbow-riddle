@@ -48,3 +48,23 @@
     font-size: 24px;
     color: white;
 }
+
+.popup-header {
+    display: flex;
+    color: white;
+    column-gap: 20px;
+    flex-wrap: wrap;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.popup-footer {
+    display: flex;
+    color: white;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.container-bar-chart {
+    height: 300px;
+}
