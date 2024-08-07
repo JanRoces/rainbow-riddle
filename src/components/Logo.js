@@ -11,9 +11,19 @@ function Logo({
   onToggleShowWinStats,
 }) {
   function togglePopupVisability(popupType) {
-    return popupType === POPUP_TYPE.HOW_TO_PLAY
-      ? onToggleShowHowToPlay(!showHowToPlay)
-      : onToggleShowWinStats(!showWinStats);
+    const isHowToPlay = popupType === POPUP_TYPE.HOW_TO_PLAY;
+
+    if (isHowToPlay && showWinStats) {
+      onToggleShowWinStats(false);
+    } else if (!isHowToPlay && showHowToPlay) {
+      onToggleShowHowToPlay(false);
+    }
+
+    if (isHowToPlay) {
+      onToggleShowHowToPlay(!showHowToPlay);
+    } else {
+      onToggleShowWinStats(!showWinStats);
+    }
   }
 
   function renderLogo() {
