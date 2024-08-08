@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/Popup.css';
 import { BarChart } from '@mui/x-charts';
-import { COLORS } from '../utils/colors';
+import { COLORS_VIBRANT } from '../utils/colors';
+import '../styles/Popup.css';
 
 export const POPUP_TYPE = {
   HOW_TO_PLAY: 'How to Play',
@@ -69,7 +69,7 @@ function Popup({ popup, toggleShowHowToPlay, toggleShowWinStats }) {
       [[], []]
     );
 
-    const colorFills = COLORS.map((c) => {
+    const colorFills = COLORS_VIBRANT.map((c) => {
       return c.name;
     });
 

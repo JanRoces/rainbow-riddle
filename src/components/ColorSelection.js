@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ColorButton from './ColorButton';
 import ActionButton from './ActionButton';
 import { animateColorSquares } from '../utils/animation';
-import { COLORS } from '../utils/colors';
+import { COLORS_VIBRANT } from '../utils/colors';
 import '../styles/ColorSelect.css';
 import '../styles/ActionButton.css';
 
@@ -22,7 +22,7 @@ function ColorSelection({
 
   function selectColor(symbol) {
     const letter = symbol.toUpperCase();
-    const color = COLORS.find((color) => color.symbol === letter);
+    const color = COLORS_VIBRANT.find((color) => color.symbol === letter);
 
     if (color && input.length !== maxInputLenth) {
       setInput([...input, color]);
@@ -134,13 +134,13 @@ function ColorSelection({
   }, [input]);
 
   function renderButtons() {
-    const len = COLORS.length;
+    const len = COLORS_VIBRANT.length;
 
     function buttonGroup(start = 0, end = len) {
       const group = [];
 
       for (let i = start; i < end; i++) {
-        const color = COLORS[i];
+        const color = COLORS_VIBRANT[i];
 
         group.push(
           <ColorButton

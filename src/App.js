@@ -5,9 +5,9 @@ import GameGrid from './components/GameGrid';
 import SecretCode from './components/SecretCode';
 import ActionButton from './components/ActionButton';
 import Popup, { POPUP_TYPE } from './components/Popup';
-import { COLORS } from './utils/colors';
-import './App.css';
+import { COLORS_VIBRANT } from './utils/colors';
 import { setGameStats } from './utils/stats';
+import './App.css';
 
 function App() {
   const [secret, setSecret] = useState(getSecretCombination());
@@ -44,8 +44,8 @@ function App() {
     const secretColors = [];
 
     for (let i = 0; i < maxInputLenth; i++) {
-      const randomIndex = Math.floor(Math.random() * COLORS.length);
-      const randomColor = COLORS[randomIndex];
+      const randomIndex = Math.floor(Math.random() * COLORS_VIBRANT.length);
+      const randomColor = COLORS_VIBRANT[randomIndex];
 
       secretColors.push(randomColor);
     }
