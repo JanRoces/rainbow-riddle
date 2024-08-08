@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ColorButton from './ColorButton';
 import ActionButton from './ActionButton';
+import { animateColorSquares } from '../utils/animation';
 import { COLORS } from '../utils/colors';
 import '../styles/ColorSelect.css';
 import '../styles/ActionButton.css';
@@ -102,6 +103,7 @@ function ColorSelection({
       setResultGrid([...resultGrid, result]);
       setCurrentRow(currentRow + 1);
       setInput([]);
+      animateColorSquares(currentRow);
     }
   }
 
