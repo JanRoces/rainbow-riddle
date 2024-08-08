@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ColorButton from './ColorButton';
 import ActionButton from './ActionButton';
+import { animateColorSquares } from '../utils/animation';
 import { COLORS } from '../utils/colors';
 import '../styles/ColorSelect.css';
 import '../styles/ActionButton.css';
@@ -102,21 +103,7 @@ function ColorSelection({
       setResultGrid([...resultGrid, result]);
       setCurrentRow(currentRow + 1);
       setInput([]);
-
-      const colorSquares = document.querySelectorAll(
-        `.grid-row:nth-child(${currentRow + 1}) .color-square`
-      );
-      colorSquares.forEach((square, index) => {
-        square.classList.add('animate-square');
-        square.style.animationDelay = `${index * 0.1}s`;
-      });
-
-      setTimeout(() => {
-        colorSquares.forEach((square) => {
-          square.classList.remove('animate-square');
-          square.style.animationDelay = '';
-        });
-      }, 600);
+      animateColorSquares(currentRow);
     }
   }
 
