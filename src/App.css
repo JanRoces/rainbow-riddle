@@ -4,6 +4,7 @@ body {
 
 i:hover {
     color: #ADADAD;
+    cursor: pointer;
 }
 
 .container-button {
