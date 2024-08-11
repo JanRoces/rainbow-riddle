@@ -4,10 +4,13 @@ import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import SecretCode from './components/SecretCode';
 import ActionButton from './components/ActionButton';
-import Popup, { POPUP_TYPE } from './components/Popup';
-import { COLORS } from './utils/colors';
-import './App.css';
+import PopupHowToPlay from './components/PopupHowToPlay';
+import PopupWinStats from './components/PopupWinStats.js';
+import { COLORS_VIBRANT } from './utils/colors';
+import { POPUP_TYPE } from './components/Popup';
 import { setGameStats } from './utils/stats';
+import './App.css';
+import './styles/Popup.css';
 
 function App() {
   const [secret, setSecret] = useState(getSecretCombination());
@@ -44,8 +47,8 @@ function App() {
     const secretColors = [];
 
     for (let i = 0; i < maxInputLenth; i++) {
-      const randomIndex = Math.floor(Math.random() * COLORS.length);
-      const randomColor = COLORS[randomIndex];
+      const randomIndex = Math.floor(Math.random() * COLORS_VIBRANT.length);
+      const randomColor = COLORS_VIBRANT[randomIndex];
 
       secretColors.push(randomColor);
     }
@@ -89,15 +92,28 @@ function App() {
       popup = POPUP_TYPE.WIN_STATS;
     }
 
-    const popupCallbacks = { toggleShowHowToPlay, toggleShowWinStats };
-
-    return popup ? (
-      <div className="container-popup">
-        <Popup popup={popup} {...popupCallbacks} />
-      </div>
-    ) : (
-      ''
-    );
+    switch (popup) {
+      case POPUP_TYPE.HOW_TO_PLAY:
+        return (
+          <div className="container-popup">
+            <PopupHowToPlay
+              showHowToPlay={showHowToPlay}
+              toggleShowHowToPlay={toggleShowHowToPlay}
+            />
+          </div>
+        );
+      case POPUP_TYPE.WIN_STATS:
+        return (
+          <div className="container-popup">
+            <PopupWinStats
+              showWinStats={showWinStats}
+              toggleShowWinStats={toggleShowWinStats}
+            />
+          </div>
+        );
+      default:
+        return '';
+    }
   }
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Logo.css';
-import { COLORS } from '../utils/colors';
+import { COLORS_VIBRANT } from '../utils/colors';
 import { POPUP_TYPE } from './Popup';
 
 function Logo({
@@ -31,7 +31,7 @@ function Logo({
     const title = [];
 
     string.split('').forEach((letter, index) => {
-      const color = COLORS[index];
+      const color = COLORS_VIBRANT[index];
 
       title.push(
         <span key={color.name} style={{ color: color.hex }}>
@@ -56,7 +56,7 @@ function Logo({
 
     string.split('').forEach((letter) => {
       if (letter !== ' ') {
-        const color = COLORS[index];
+        const color = COLORS_VIBRANT[index];
 
         title.push(
           <span key={color.name} style={{ color: color.hex }}>
