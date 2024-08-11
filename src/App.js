@@ -4,10 +4,13 @@ import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import SecretCode from './components/SecretCode';
 import ActionButton from './components/ActionButton';
-import Popup, { POPUP_TYPE } from './components/Popup';
+import PopupHowToPlay from './components/PopupHowToPlay';
+import PopupWinStats from './components/PopupWinStats.js';
 import { COLORS_VIBRANT } from './utils/colors';
+import { POPUP_TYPE } from './components/Popup';
 import { setGameStats } from './utils/stats';
 import './App.css';
+import './styles/Popup.css';
 
 function App() {
   const [secret, setSecret] = useState(getSecretCombination());
@@ -89,15 +92,28 @@ function App() {
       popup = POPUP_TYPE.WIN_STATS;
     }
 
-    const popupCallbacks = { toggleShowHowToPlay, toggleShowWinStats };
-
-    return popup ? (
-      <div className="container-popup">
-        <Popup popup={popup} {...popupCallbacks} />
-      </div>
-    ) : (
-      ''
-    );
+    switch (popup) {
+      case POPUP_TYPE.HOW_TO_PLAY:
+        return (
+          <div className="container-popup">
+            <PopupHowToPlay
+              showHowToPlay={showHowToPlay}
+              toggleShowHowToPlay={toggleShowHowToPlay}
+            />
+          </div>
+        );
+      case POPUP_TYPE.WIN_STATS:
+        return (
+          <div className="container-popup">
+            <PopupWinStats
+              showWinStats={showWinStats}
+              toggleShowWinStats={toggleShowWinStats}
+            />
+          </div>
+        );
+      default:
+        return '';
+    }
   }
 
   return (
