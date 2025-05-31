@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/rainbow-riddle/static/css/main.d0fb57a1.css",
+    "main.js": "/rainbow-riddle/static/js/main.eae88e84.js",
+    "index.html": "/rainbow-riddle/index.html",
+    "main.d0fb57a1.css.map": "/rainbow-riddle/static/css/main.d0fb57a1.css.map",
+    "main.eae88e84.js.map": "/rainbow-riddle/static/js/main.eae88e84.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d0fb57a1.css",
+    "static/js/main.eae88e84.js"
+  ]
+}
