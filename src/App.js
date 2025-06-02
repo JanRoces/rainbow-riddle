@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Logo from './components/Logo';
+import Footer from './components/Footer';
 import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import SecretCode from './components/SecretCode';
@@ -136,6 +137,19 @@ function App() {
     );
   }
 
+  function renderFooter() {
+    return isMobile ? (
+      <Footer
+        showHowToPlay={showHowToPlay}
+        showWinStats={showWinStats}
+        onToggleShowHowToPlay={toggleShowHowToPlay}
+        onToggleShowWinStats={toggleShowWinStats}
+      />
+    ) : (
+      ''
+    );
+  }
+
   return (
     <div>
       {renderPopup()}
@@ -143,6 +157,7 @@ function App() {
       <GameGrid {...props} />
       {renderSelectionOrSecret()}
       {renderPlayAgainButton()}
+      {renderFooter()}
     </div>
   );
 }
