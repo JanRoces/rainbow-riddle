@@ -78,7 +78,11 @@ function App() {
   function renderPlayAgainButton() {
     return status !== '' ? (
       <div className="container-button">
-        <ActionButton label="Play Again" type="play" onPlayAgain={playAgain} />
+        <ActionButton
+          label="Play Again"
+          type="play-again"
+          onPlayAgain={playAgain}
+        />
       </div>
     ) : (
       ''

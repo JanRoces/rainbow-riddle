@@ -13,7 +13,7 @@ function ActionButton({
         return onDeleteColor();
       case 'enter':
         return onEnterInput();
-      case 'play':
+      case 'play-again':
         return onPlayAgain();
       default:
         break;

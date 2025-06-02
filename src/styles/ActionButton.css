@@ -36,7 +36,7 @@
     width: 100px;
 }
 
-.button-action-play {
+.button-action-play-again {
     align-items: center;
     background-color: #ADADAD;
     border: none;
@@ -49,5 +49,5 @@
     justify-content: center;
     outline: none;
     vertical-align: middle;
-    min-width: 150px;
+    min-width: 175px;
 }
