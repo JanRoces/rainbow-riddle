@@ -12,6 +12,19 @@ i:hover {
     justify-content: center;
 }
 
+.container-game {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+}
+.container-game-and-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
 .container-popup {
     display: flex;
     flex-direction: column;
@@ -21,7 +34,6 @@ i:hover {
     position: fixed;
     z-index: 0;
 }
-
 
 @media (min-width: 600px) {
     .container-popup {

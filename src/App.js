@@ -150,14 +150,24 @@ function App() {
     );
   }
 
+  function renderGame() {
+    return (
+      <div className="container-game">
+        <GameGrid {...props} />
+        {renderSelectionOrSecret()}
+        {renderPlayAgainButton()}
+      </div>
+    );
+  }
+
   return (
     <div>
       {renderPopup()}
       {renderLogo()}
-      <GameGrid {...props} />
-      {renderSelectionOrSecret()}
-      {renderPlayAgainButton()}
-      {renderFooter()}
+      <div className="container-game-and-footer">
+        {renderGame()}
+        {renderFooter()}
+      </div>
     </div>
   );
 }
