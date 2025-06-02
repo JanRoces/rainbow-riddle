@@ -1,0 +1,11 @@
+.container-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-icon {
+    color: white;
+    flex-shrink: 0;
+    font-size: 24px;
+    padding: 15px;
+}
