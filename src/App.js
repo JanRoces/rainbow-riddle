@@ -6,9 +6,10 @@ import SecretCode from './components/SecretCode';
 import ActionButton from './components/ActionButton';
 import PopupHowToPlay from './components/PopupHowToPlay';
 import PopupWinStats from './components/PopupWinStats.js';
+import { setGameStats } from './utils/stats';
+import { useMediaQuery } from '@mui/material';
 import { COLORS_VIBRANT } from './utils/colors';
 import { POPUP_TYPE } from './components/Popup';
-import { setGameStats } from './utils/stats';
 import './App.css';
 import './styles/Popup.css';
 
@@ -24,6 +25,7 @@ function App() {
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
   const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
+  const isMobile = useMediaQuery('(max-width:768px)');
 
   useEffect(() => {
     if (status !== '') {
@@ -116,9 +118,8 @@ function App() {
     }
   }
 
-  return (
-    <div>
-      {renderPopup()}
+  function renderLogo() {
+    return !isMobile ? (
       <Logo
         message={status}
         showHowToPlay={showHowToPlay}
@@ -126,6 +127,15 @@ function App() {
         onToggleShowHowToPlay={toggleShowHowToPlay}
         onToggleShowWinStats={toggleShowWinStats}
       />
+    ) : (
+      ''
+    );
+  }
+
+  return (
+    <div>
+      {renderPopup()}
+      {renderLogo()}
       <GameGrid {...props} />
       {renderSelectionOrSecret()}
       {renderPlayAgainButton()}
