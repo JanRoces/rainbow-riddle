@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/rainbow-riddle/static/css/main.536bb2cb.css",
-    "main.js": "/rainbow-riddle/static/js/main.2e4430d1.js",
+    "main.css": "/rainbow-riddle/static/css/main.30f3e011.css",
+    "main.js": "/rainbow-riddle/static/js/main.3fc0dc1a.js",
     "index.html": "/rainbow-riddle/index.html",
-    "main.536bb2cb.css.map": "/rainbow-riddle/static/css/main.536bb2cb.css.map",
-    "main.2e4430d1.js.map": "/rainbow-riddle/static/js/main.2e4430d1.js.map"
+    "main.30f3e011.css.map": "/rainbow-riddle/static/css/main.30f3e011.css.map",
+    "main.3fc0dc1a.js.map": "/rainbow-riddle/static/js/main.3fc0dc1a.js.map"
   },
   "entrypoints": [
-    "static/css/main.536bb2cb.css",
-    "static/js/main.2e4430d1.js"
+    "static/css/main.30f3e011.css",
+    "static/js/main.3fc0dc1a.js"
   ]
 }
