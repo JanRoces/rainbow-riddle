@@ -34,13 +34,12 @@
 }
 
 .container-selection {
-    border-top: 1px solid #3A3A3C;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin: 10px 0;
+    margin-bottom: 10px;
     padding: 10px 10px 0;
 }
 

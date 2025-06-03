@@ -51,7 +51,7 @@ function GameGrid({ colorGrid, currentRow, input, resultGrid }) {
     return rows;
   }
 
-  return <div>{renderRows()}</div>;
+  return <div className="container-rows">{renderRows()}</div>;
 }
 
 export default GameGrid;

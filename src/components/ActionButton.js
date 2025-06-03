@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@mui/material';
 import React from 'react';
 
 function ActionButton({
@@ -7,6 +8,8 @@ function ActionButton({
   onEnterInput,
   onPlayAgain,
 }) {
+  const isMobile = useMediaQuery('(max-width:768px)');
+
   function handleOnClick() {
     switch (type) {
       case 'delete':
@@ -21,7 +24,10 @@ function ActionButton({
   }
 
   return (
-    <button className={'button-action-' + type} onClick={() => handleOnClick()}>
+    <button
+      className={`button-action-${type}${isMobile ? ' button-mobile' : ''}`}
+      onClick={() => handleOnClick()}
+    >
       {label}
     </button>
   );

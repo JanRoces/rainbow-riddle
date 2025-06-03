@@ -1,13 +1,15 @@
 import React from 'react';
 import '../styles/SecretCode.css';
+import { useMediaQuery } from '@mui/material';
 
 function SecretCode({ secret }) {
   const colors = [];
+  const isMobile = useMediaQuery('(max-width:768px)');
 
   secret.forEach(({ hex, name }, index) => {
     colors.push(
       <div
-        className="color"
+        className={`color${isMobile ? '-mobile' : ''}`}
         key={name + index}
         style={{ backgroundColor: hex }}
       ></div>

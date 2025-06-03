@@ -51,3 +51,8 @@
     vertical-align: middle;
     min-width: 175px;
 }
+
+.button-mobile {
+    height: 40px;
+    font-size: 20px;
+}
