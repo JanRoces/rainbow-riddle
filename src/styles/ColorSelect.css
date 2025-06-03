@@ -17,6 +17,16 @@
     width: 52px;
 }
 
+.button-color-mobile {
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    height: 40px;
+    outline: none;
+    width: 40px;
+}
+
 .container-action-buttons {
     display:flex;
     gap: 10px;

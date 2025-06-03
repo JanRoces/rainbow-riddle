@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ColorButton from './ColorButton';
 import ActionButton from './ActionButton';
 import { animateColorSquares } from '../utils/animation';
+import { useMediaQuery } from '@mui/material';
 import { COLORS_VIBRANT } from '../utils/colors';
 import '../styles/ColorSelect.css';
 import '../styles/ActionButton.css';
@@ -19,6 +20,7 @@ function ColorSelection({
   setResultGrid,
 }) {
   const maxInputLenth = 5;
+  const isMobile = useMediaQuery('(max-width:768px)');
 
   function selectColor(symbol) {
     const letter = symbol.toUpperCase();
@@ -103,7 +105,7 @@ function ColorSelection({
       setResultGrid([...resultGrid, result]);
       setCurrentRow(currentRow + 1);
       setInput([]);
-      animateColorSquares(currentRow);
+      animateColorSquares(currentRow, isMobile);
     }
   }
 
@@ -133,7 +135,25 @@ function ColorSelection({
     };
   }, [input]);
 
-  function renderButtons() {
+  function renderColorButtonsMobile() {
+    const len = COLORS_VIBRANT.length;
+    const group = [];
+
+    for (let i = 0; i < len; i++) {
+      const color = {
+        ...COLORS_VIBRANT[i],
+        isMobile: true,
+      };
+
+      group.push(
+        <ColorButton {...color} key={color.name} onSelectColor={selectColor} />
+      );
+    }
+
+    return <div className="group">{group}</div>;
+  }
+
+  function renderColorButtons() {
     const len = COLORS_VIBRANT.length;
 
     function buttonGroup(start = 0, end = len) {
@@ -170,9 +190,13 @@ function ColorSelection({
     return buttons;
   }
 
+  function renderColorSelection() {
+    return isMobile ? renderColorButtonsMobile() : renderColorButtons();
+  }
+
   return (
     <div className="key-board">
-      <div className="container-selection">{renderButtons()}</div>
+      <div className="container-selection">{renderColorSelection()}</div>
       <div className="container-action-buttons">
         <ActionButton label="Del" type="delete" onDeleteColor={deleteColor} />
         <ActionButton label="Enter" type="enter" onEnterInput={enterColors} />
