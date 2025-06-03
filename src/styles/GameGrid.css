@@ -1,3 +1,7 @@
+.container-rows {
+    border-bottom: 1px solid #3A3A3C;
+    padding-bottom: 10px;
+}
 .grid-row {
     display: flex;
     flex-direction: row;
@@ -13,6 +17,16 @@
     height: 52px;
     justify-content: center;
     width: 52px;
+    transition: transform 0.5s ease;
+}
+
+.color-square-mobile {
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    height: 45px;
+    justify-content: center;
+    width: 45px;
     transition: transform 0.5s ease;
 }
 

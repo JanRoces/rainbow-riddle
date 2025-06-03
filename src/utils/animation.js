@@ -1,7 +1,10 @@
-export function animateColorSquares(currentRow) {
+export function animateColorSquares(currentRow, isMobile) {
+  const className = isMobile ? 'color-square-mobile' : 'color-square';
+
   const colorSquares = document.querySelectorAll(
-    `.grid-row:nth-child(${currentRow + 1}) .color-square`
+    `.grid-row:nth-child(${currentRow + 1}) .${className}`
   );
+
   colorSquares.forEach((square, index) => {
     square.classList.add('animate-square');
     square.style.animationDelay = `${index * 0.1}s`;

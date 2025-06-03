@@ -17,6 +17,16 @@
     width: 52px;
 }
 
+.button-color-mobile {
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    height: 40px;
+    outline: none;
+    width: 40px;
+}
+
 .container-action-buttons {
     display:flex;
     gap: 10px;
@@ -24,13 +34,12 @@
 }
 
 .container-selection {
-    border-top: 1px solid #3A3A3C;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin: 10px 0;
+    margin-bottom: 10px;
     padding: 10px 10px 0;
 }
 
