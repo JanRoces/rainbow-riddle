@@ -70,7 +70,7 @@ function App() {
 
   function renderSelectionOrSecret() {
     return status ? (
-      <SecretCode secret={secret} />
+      <SecretCode secret={secret} status={status} />
     ) : (
       <ColorSelection {...props} {...callBacks} />
     );
