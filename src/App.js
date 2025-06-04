@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Logo from './components/Logo';
+import Footer from './components/Footer';
 import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
 import SecretCode from './components/SecretCode';
 import ActionButton from './components/ActionButton';
 import PopupHowToPlay from './components/PopupHowToPlay';
 import PopupWinStats from './components/PopupWinStats.js';
+import { setGameStats } from './utils/stats';
+import { useMediaQuery } from '@mui/material';
 import { COLORS_VIBRANT } from './utils/colors';
 import { POPUP_TYPE } from './components/Popup';
-import { setGameStats } from './utils/stats';
 import './App.css';
 import './styles/Popup.css';
 
@@ -24,6 +26,7 @@ function App() {
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
   const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
+  const isMobile = useMediaQuery('(max-width:768px)');
 
   useEffect(() => {
     if (status !== '') {
@@ -67,7 +70,7 @@ function App() {
 
   function renderSelectionOrSecret() {
     return status ? (
-      <SecretCode secret={secret} />
+      <SecretCode secret={secret} status={status} />
     ) : (
       <ColorSelection {...props} {...callBacks} />
     );
@@ -76,7 +79,11 @@ function App() {
   function renderPlayAgainButton() {
     return status !== '' ? (
       <div className="container-button">
-        <ActionButton label="Play Again" type="play" onPlayAgain={playAgain} />
+        <ActionButton
+          label="Play Again"
+          type="play-again"
+          onPlayAgain={playAgain}
+        />
       </div>
     ) : (
       ''
@@ -116,9 +123,8 @@ function App() {
     }
   }
 
-  return (
-    <div>
-      {renderPopup()}
+  function renderLogo() {
+    return !isMobile ? (
       <Logo
         message={status}
         showHowToPlay={showHowToPlay}
@@ -126,9 +132,42 @@ function App() {
         onToggleShowHowToPlay={toggleShowHowToPlay}
         onToggleShowWinStats={toggleShowWinStats}
       />
-      <GameGrid {...props} />
-      {renderSelectionOrSecret()}
-      {renderPlayAgainButton()}
+    ) : (
+      ''
+    );
+  }
+
+  function renderFooter() {
+    return isMobile ? (
+      <Footer
+        showHowToPlay={showHowToPlay}
+        showWinStats={showWinStats}
+        onToggleShowHowToPlay={toggleShowHowToPlay}
+        onToggleShowWinStats={toggleShowWinStats}
+      />
+    ) : (
+      ''
+    );
+  }
+
+  function renderGame() {
+    return (
+      <div className="container-game">
+        <GameGrid {...props} />
+        {renderSelectionOrSecret()}
+        {renderPlayAgainButton()}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {renderPopup()}
+      {renderLogo()}
+      <div className="container-game-and-footer">
+        {renderGame()}
+        {renderFooter()}
+      </div>
     </div>
   );
 }
