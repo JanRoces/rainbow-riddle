@@ -1,5 +1,6 @@
 import React from 'react';
-import '../styles/Logo.css';
+import Logo from './Logo';
+import '../styles/Header.css';
 import { COLORS_VIBRANT } from '../utils/colors';
 import { POPUP_TYPE } from './Popup';
 
@@ -107,7 +108,9 @@ function Header({
   return (
     <div className="container-header">
       <span className="container-icon">{renderHowToPlayIcon()}</span>
-      <span className="container-logo">{renderTitle()}</span>
+      <span className="container-logo">
+        <Logo />
+      </span>
       <span className="container-icon">{renderStatsIcon()}</span>
     </div>
   );
