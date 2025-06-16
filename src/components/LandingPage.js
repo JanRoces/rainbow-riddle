@@ -1,14 +1,39 @@
 import React from 'react';
-import Logo from './Logo';
 import '../styles/LandingPage.css';
+import { COLORS_VIBRANT } from '../utils/colors';
 
 function LandingPage() {
+  function renderTitle() {
+    return <span>RainbowRiddle</span>;
+  }
+
+  function renderSquares() {
+    const squares = [];
+    const bounceDuration = 0.6;
+    const colorsLength = COLORS_VIBRANT.length;
+    const animationDelay = bounceDuration / colorsLength;
+
+    COLORS_VIBRANT.forEach((color, index) => {
+      squares.push(
+        <div
+          key={index}
+          className="square"
+          style={{
+            backgroundColor: color.hex,
+            animationDelay: `${index * animationDelay}s`,
+          }}
+        ></div>
+      );
+    });
+
+    return squares;
+  }
+
   return (
     <div className="container-landing-page">
       <div className="welcome-text">Welcome to</div>
-      <div className="logo">
-        <Logo />
-      </div>
+      <div className="logo">{renderTitle()}</div>
+      <div className="container-squares">{renderSquares()}</div>
     </div>
   );
 }
