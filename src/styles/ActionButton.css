@@ -1,7 +1,12 @@
 .button-action-delete:hover,
 .button-action-enter:hover,
-.button-action-play:hover {
+.button-action-play-again:hover {
     color: white;
+}
+
+.button-action-play:hover {
+    background-color: white;
+    color: black;
 }
 
 .button-action-delete {
@@ -50,6 +55,23 @@
     outline: none;
     vertical-align: middle;
     min-width: 175px;
+}
+
+.button-action-play {
+    align-items: center;
+    background-color: #202124;
+    border: 3px solid white;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    height: 40px;
+    justify-content: center;
+    outline: none;
+    padding: 0 20px;
+    vertical-align: middle;
 }
 
 .button-mobile {
