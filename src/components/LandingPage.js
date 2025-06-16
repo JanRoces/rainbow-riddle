@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styles/LandingPage.css';
 import { COLORS_VIBRANT } from '../utils/colors';
+import ActionButton from './ActionButton';
 
-function LandingPage() {
+function LandingPage({ onPlay }) {
   function renderTitle() {
     return <span>RainbowRiddle</span>;
   }
@@ -29,11 +30,17 @@ function LandingPage() {
     return squares;
   }
 
+  function play() {
+    console.log('Play button clicked');
+    onPlay();
+  }
+
   return (
     <div className="container-landing-page">
       <div className="welcome-text">Welcome to</div>
       <div className="logo">{renderTitle()}</div>
       <div className="container-squares">{renderSquares()}</div>
+      <ActionButton label="Play" type="play" onPlay={play} />
     </div>
   );
 }
