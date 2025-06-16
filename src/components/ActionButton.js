@@ -7,6 +7,7 @@ function ActionButton({
   onDeleteColor,
   onEnterInput,
   onPlayAgain,
+  onPlay,
 }) {
   const isMobile = useMediaQuery('(max-width:768px)');
 
@@ -18,6 +19,8 @@ function ActionButton({
         return onEnterInput();
       case 'play-again':
         return onPlayAgain();
+      case 'play':
+        return onPlay();
       default:
         break;
     }
