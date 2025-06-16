@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Logo from './components/Logo';
+import LandingPage from './components/LandingPage.js';
+import Header from './components/Header.js';
 import Footer from './components/Footer';
 import ColorSelection from './components/ColorSelection';
 import GameGrid from './components/GameGrid';
@@ -23,6 +24,7 @@ function App() {
   const [status, setStatus] = useState('');
   const [showHowToPlay, toggleShowHowToPlay] = useState(false);
   const [showWinStats, toggleShowWinStats] = useState(false);
+  const [showApp, setShowApp] = useState(false);
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
   const callBacks = { setColorGrid, setCurrentRow, setInput, setResultGrid };
@@ -123,9 +125,9 @@ function App() {
     }
   }
 
-  function renderLogo() {
+  function renderHeader() {
     return !isMobile ? (
-      <Logo
+      <Header
         message={status}
         showHowToPlay={showHowToPlay}
         showWinStats={showWinStats}
@@ -160,14 +162,32 @@ function App() {
     );
   }
 
-  return (
-    <div>
-      {renderPopup()}
-      {renderLogo()}
-      <div className="container-game-and-footer">
-        {renderGame()}
-        {renderFooter()}
+  function renderLandingPage() {
+    return (
+      <LandingPage
+        play={showApp}
+        message={status}
+        onPlay={() => setShowApp(true)}
+      />
+    );
+  }
+
+  function renderApp() {
+    return (
+      <div className="container-header-and-game">
+        {renderPopup()}
+        {renderHeader()}
+        <div className="container-game-and-footer">
+          {renderGame()}
+          {renderFooter()}
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div className={!showApp ? 'container' : ''}>
+      {!showApp ? renderLandingPage() : renderApp()}
     </div>
   );
 }
