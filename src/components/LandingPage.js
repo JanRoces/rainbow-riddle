@@ -22,8 +22,7 @@ function LandingPage({ onPlay }) {
           style={{
             backgroundColor: color.hex,
             animationDelay: `${index * animationDelay}s`,
-          }}
-        ></div>
+          }}></div>
       );
     });
 
@@ -31,7 +30,6 @@ function LandingPage({ onPlay }) {
   }
 
   function play() {
-    console.log('Play button clicked');
     onPlay();
   }
 
