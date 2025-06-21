@@ -84,7 +84,7 @@ function App() {
         <ActionButton
           label="Play Again"
           type="play-again"
-          onPlayAgain={playAgain}
+          onClick={playAgain}
         />
       </div>
     ) : (

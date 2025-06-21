@@ -24,7 +24,7 @@ function ColorSelection({
 
   function selectColor(symbol) {
     const letter = symbol.toUpperCase();
-    const color = COLORS_VIBRANT.find((color) => color.symbol === letter);
+    const color = COLORS_VIBRANT.find(color => color.symbol === letter);
 
     if (color && input.length !== maxInputLenth) {
       setInput([...input, color]);
@@ -45,12 +45,12 @@ function ColorSelection({
     const inputCount = {};
     const secretCount = {};
 
-    input.forEach((color) => {
+    input.forEach(color => {
       const { name } = color;
       inputCount[name] = (inputCount[name] || 0) + 1;
     });
 
-    secret.forEach((color) => {
+    secret.forEach(color => {
       const { name } = color;
       secretCount[name] = (secretCount[name] || 0) + 1;
     });
@@ -80,7 +80,7 @@ function ColorSelection({
         result.correctPosition++;
         secretCount[name]--;
       } else {
-        secret.forEach((secretColor) => {
+        secret.forEach(secretColor => {
           if (
             inputColor === secretColor &&
             secretCount[name] > 0 &&
@@ -110,7 +110,7 @@ function ColorSelection({
   }
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = e => {
       if (currentRow < 8 && status === '') {
         const keyInput = e.key;
 
@@ -146,7 +146,7 @@ function ColorSelection({
       };
 
       group.push(
-        <ColorButton {...color} key={color.name} onSelectColor={selectColor} />
+        <ColorButton {...color} key={color.name} onSelectColor={selectColor} />,
       );
     }
 
@@ -167,7 +167,7 @@ function ColorSelection({
             {...color}
             key={color.name}
             onSelectColor={selectColor}
-          />
+          />,
         );
       }
 
@@ -179,12 +179,12 @@ function ColorSelection({
     buttons.push(
       <div className="group" key="group-1">
         {buttonGroup(0, 4)}
-      </div>
+      </div>,
     );
     buttons.push(
       <div className="group" key="group-2">
         {buttonGroup(4, len)}
-      </div>
+      </div>,
     );
 
     return buttons;
@@ -198,8 +198,8 @@ function ColorSelection({
     <div className="key-board">
       <div className="container-selection">{renderColorSelection()}</div>
       <div className="container-action-buttons">
-        <ActionButton label="Del" type="delete" onDeleteColor={deleteColor} />
-        <ActionButton label="Enter" type="enter" onEnterInput={enterColors} />
+        <ActionButton label="Del" type="delete" onClick={deleteColor} />
+        <ActionButton label="Enter" type="enter" onClick={enterColors} />
       </div>
     </div>
   );
