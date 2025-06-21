@@ -198,7 +198,12 @@ function ColorSelection({
     <div className="key-board">
       <div className="container-selection">{renderColorSelection()}</div>
       <div className="container-action-buttons">
-        <ActionButton label="Del" type="delete" onClick={deleteColor} />
+        <ActionButton
+          label="Del"
+          type="delete"
+          onClick={deleteColor}
+          disabled={input.length === 0}
+        />
         <ActionButton
           label="Enter"
           type="enter"
