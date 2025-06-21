@@ -7,30 +7,17 @@
 .button-action-play:hover {
     background-color: white;
     color: black;
+    cursor: pointer;
 }
 
-.button-action-delete {
-    align-items: center;
-    background-color: #808080;
-    border: none;
-    border-radius: 10px;
-    color: #202124;
-    display: flex;
-    font-size: 25px;
-    font-weight: bold;
-    height: 52px;
-    justify-content: center;
-    outline: none;
-    vertical-align: middle;
-    width: 100px;
-}
-
+.button-action-delete,
 .button-action-enter {
     align-items: center;
     background-color: #ADADAD;
     border: none;
     border-radius: 10px;
     color: #202124;
+    cursor: pointer;
     display: flex;
     font-size: 25px;
     font-weight: bold;
@@ -47,6 +34,7 @@
     border: none;
     border-radius: 10px;
     color: #202124;
+    cursor: pointer;
     display: flex;
     font-size: 25px;
     font-weight: bold;
@@ -77,4 +65,10 @@
 .button-mobile {
     height: 40px;
     font-size: 20px;
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
 }

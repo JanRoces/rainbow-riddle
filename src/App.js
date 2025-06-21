@@ -22,7 +22,7 @@ function App() {
   const [colorGrid, setColorGrid] = useState([]);
   const [resultGrid, setResultGrid] = useState([]);
   const [status, setStatus] = useState('');
-  const [showHowToPlay, toggleShowHowToPlay] = useState(false);
+  const [showHowToPlay, toggleShowHowToPlay] = useState(true);
   const [showWinStats, toggleShowWinStats] = useState(false);
   const [showApp, setShowApp] = useState(false);
 
@@ -34,7 +34,7 @@ function App() {
     if (status !== '') {
       setGameStats(status, currentRow);
     }
-  }, [status]);
+  }, [status, currentRow]);
 
   if (status === '' && currentRow > 0) {
     const index = currentRow - 1;
@@ -84,7 +84,7 @@ function App() {
         <ActionButton
           label="Play Again"
           type="play-again"
-          onPlayAgain={playAgain}
+          onClick={playAgain}
         />
       </div>
     ) : (
