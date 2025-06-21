@@ -22,15 +22,12 @@ function LandingPage({ onPlay }) {
           style={{
             backgroundColor: color.hex,
             animationDelay: `${index * animationDelay}s`,
-          }}></div>
+          }}
+        ></div>,
       );
     });
 
     return squares;
-  }
-
-  function play() {
-    onPlay();
   }
 
   return (
@@ -38,7 +35,7 @@ function LandingPage({ onPlay }) {
       <div className="welcome-text">Welcome to</div>
       <div className="logo">{renderTitle()}</div>
       <div className="container-squares">{renderSquares()}</div>
-      <ActionButton label="Play" type="play" onPlay={play} />
+      <ActionButton label="Play" type="play" onClick={onPlay} />
     </div>
   );
 }
