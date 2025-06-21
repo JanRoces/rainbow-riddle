@@ -19,14 +19,14 @@ function ColorSelection({
   setInput,
   setResultGrid,
 }) {
-  const maxInputLenth = 5;
+  const maxInputLength = 5;
   const isMobile = useMediaQuery('(max-width:768px)');
 
   function selectColor(symbol) {
     const letter = symbol.toUpperCase();
     const color = COLORS_VIBRANT.find(color => color.symbol === letter);
 
-    if (color && input.length !== maxInputLenth) {
+    if (color && input.length !== maxInputLength) {
       setInput([...input, color]);
     }
   }
@@ -98,7 +98,7 @@ function ColorSelection({
   }
 
   function enterColors() {
-    if (input.length === maxInputLenth && currentRow < 8) {
+    if (input.length === maxInputLength && currentRow < 8) {
       const result = checkColors();
 
       setColorGrid([...colorGrid, input]);
@@ -199,7 +199,12 @@ function ColorSelection({
       <div className="container-selection">{renderColorSelection()}</div>
       <div className="container-action-buttons">
         <ActionButton label="Del" type="delete" onClick={deleteColor} />
-        <ActionButton label="Enter" type="enter" onClick={enterColors} />
+        <ActionButton
+          label="Enter"
+          type="enter"
+          onClick={enterColors}
+          disabled={input.length !== maxInputLength}
+        />
       </div>
     </div>
   );
