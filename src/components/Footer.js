@@ -11,18 +11,18 @@ function Footer({
   onToggleShowSettings,
 }) {
   function togglePopupVisibility(popupType) {
-    const isHowToPlay = popupType === POPUP_TYPE.HOW_TO_PLAY;
-
-    if (isHowToPlay && showWinStats) {
-      onToggleShowWinStats(false);
-    } else if (!isHowToPlay && showHowToPlay) {
-      onToggleShowHowToPlay(false);
-    }
-
-    if (isHowToPlay) {
-      onToggleShowHowToPlay(!showHowToPlay);
-    } else {
-      onToggleShowWinStats(!showWinStats);
+    switch (popupType) {
+      case POPUP_TYPE.HOW_TO_PLAY:
+        onToggleShowHowToPlay(!showHowToPlay);
+        break;
+      case POPUP_TYPE.WIN_STATS:
+        onToggleShowWinStats(!showWinStats);
+        break;
+      case POPUP_TYPE.SETTINGS:
+        onToggleShowSettings(!showSettings);
+        break;
+      default:
+        break;
     }
   }
 
