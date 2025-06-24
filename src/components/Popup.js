@@ -4,6 +4,7 @@ import '../styles/Popup.css';
 export const POPUP_TYPE = {
   HOW_TO_PLAY: 'How to Play',
   WIN_STATS: 'Win Statistics',
+  SETTINGS: 'Settings',
 };
 
 function Popup({ type, onRenderContent, onClosePopup }) {
