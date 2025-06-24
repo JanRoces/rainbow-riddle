@@ -8,6 +8,7 @@ import SecretCode from './components/SecretCode';
 import ActionButton from './components/ActionButton';
 import PopupHowToPlay from './components/PopupHowToPlay';
 import PopupWinStats from './components/PopupWinStats.js';
+import PopupSettings from './components/PopupSettings.js';
 import { setGameStats } from './utils/stats';
 import { useMediaQuery } from '@mui/material';
 import { COLORS_VIBRANT } from './utils/colors';
@@ -24,6 +25,7 @@ function App() {
   const [status, setStatus] = useState('');
   const [showHowToPlay, toggleShowHowToPlay] = useState(true);
   const [showWinStats, toggleShowWinStats] = useState(false);
+  const [showSettings, toggleShowSettings] = useState(false);
   const [showApp, setShowApp] = useState(false);
 
   const props = { colorGrid, currentRow, input, resultGrid, secret, status };
@@ -99,6 +101,8 @@ function App() {
       popup = POPUP_TYPE.HOW_TO_PLAY;
     } else if (showWinStats) {
       popup = POPUP_TYPE.WIN_STATS;
+    } else if (showSettings) {
+      popup = POPUP_TYPE.SETTINGS;
     }
 
     switch (popup) {
@@ -120,6 +124,15 @@ function App() {
             />
           </div>
         );
+      case POPUP_TYPE.SETTINGS:
+        return (
+          <div className="container-popup">
+            <PopupSettings
+              showSettings={showSettings}
+              toggleShowSettings={toggleShowSettings}
+            />
+          </div>
+        );
       default:
         return '';
     }
@@ -131,8 +144,10 @@ function App() {
         message={status}
         showHowToPlay={showHowToPlay}
         showWinStats={showWinStats}
+        showSettings={showSettings}
         onToggleShowHowToPlay={toggleShowHowToPlay}
         onToggleShowWinStats={toggleShowWinStats}
+        onToggleShowSettings={toggleShowSettings}
       />
     ) : (
       ''
@@ -144,8 +159,10 @@ function App() {
       <Footer
         showHowToPlay={showHowToPlay}
         showWinStats={showWinStats}
+        showSettings={showSettings}
         onToggleShowHowToPlay={toggleShowHowToPlay}
         onToggleShowWinStats={toggleShowWinStats}
+        onToggleShowSettings={toggleShowSettings}
       />
     ) : (
       ''
