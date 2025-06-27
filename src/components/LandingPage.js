@@ -13,7 +13,9 @@ function LandingPage({ onPlay }) {
     <div className="container-landing-page">
       <div className="welcome-text">Welcome to</div>
       <div className="logo">{renderTitle()}</div>
-      <AnimatedSquares colors={COLORS_VIBRANT} />
+      <div className="container-animated-squares">
+        <AnimatedSquares colors={COLORS_VIBRANT} />
+      </div>
       <ActionButton label="Play" type="play" onClick={onPlay} />
     </div>
   );
