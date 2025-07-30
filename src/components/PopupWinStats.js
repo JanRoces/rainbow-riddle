@@ -1,7 +1,7 @@
 import React from 'react';
 import Popup, { POPUP_TYPE } from './Popup';
 import { BarChart } from '@mui/x-charts';
-import { COLORS_VIBRANT } from '../utils/colors';
+import { getColorMode } from '../utils/colors';
 import '../styles/Popup.css';
 
 function PopupWinStats({ showWinStats, toggleShowWinStats }) {
@@ -24,7 +24,7 @@ function PopupWinStats({ showWinStats, toggleShowWinStats }) {
         acc[1].push(value);
         return acc;
       },
-      [[], []]
+      [[], []],
     );
 
     return {
@@ -34,11 +34,12 @@ function PopupWinStats({ showWinStats, toggleShowWinStats }) {
   }
 
   function getColorFills() {
-    const colorFills = COLORS_VIBRANT.map((c) => {
-      return c.name;
+    const colorMode = getColorMode();
+    const colorFills = colorMode.map(c => {
+      return c.hex;
     });
 
-    colorFills.push('white');
+    colorFills.push('#FFFFFF');
 
     return colorFills;
   }
@@ -75,7 +76,7 @@ function PopupWinStats({ showWinStats, toggleShowWinStats }) {
             series={[{ data: dataValues }]}
             tooltip={{ trigger: 'none' }}
             borderRadius={10}
-            barLabel={(item) => {
+            barLabel={item => {
               return item.value;
             }}
             axisHighlight={{

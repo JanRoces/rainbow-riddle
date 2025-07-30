@@ -1,6 +1,7 @@
 import React from 'react';
 import ColorSquare from './ColorSquare';
 import Checker from './Checker';
+import { convertColorToCurrentMode } from '../utils/colors';
 import '../styles/GameGrid.css';
 
 function GameGrid({ colorGrid, currentRow, input, resultGrid }) {
@@ -12,13 +13,14 @@ function GameGrid({ colorGrid, currentRow, input, resultGrid }) {
 
     for (let i = 0; i < columnSize; i++) {
       const color = input[i];
-      const inputColor = color && showInput ? color : {};
+      const inputColor =
+        color && showInput ? convertColorToCurrentMode(color) : {};
       const key = 'row-' + rowIndex + 'column-' + i;
 
       let gridColor = null;
 
       if (colorGrid[rowIndex]) {
-        gridColor = colorGrid[rowIndex][i];
+        gridColor = convertColorToCurrentMode(colorGrid[rowIndex][i]);
       }
 
       const colorObj = showInput ? inputColor : gridColor;
@@ -44,7 +46,7 @@ function GameGrid({ colorGrid, currentRow, input, resultGrid }) {
       rows.push(
         <div key={key} className="grid-row">
           {renderColumns(rowIndex, showInput)}
-        </div>
+        </div>,
       );
     }
 

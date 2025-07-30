@@ -11,7 +11,7 @@ import PopupWinStats from './components/PopupWinStats.js';
 import PopupSettings from './components/PopupSettings.js';
 import { setGameStats } from './utils/stats';
 import { useMediaQuery } from '@mui/material';
-import { COLORS_VIBRANT } from './utils/colors';
+import { getColorMode } from './utils/colors';
 import { POPUP_TYPE } from './components/Popup';
 import './App.css';
 import './styles/Popup.css';
@@ -50,12 +50,13 @@ function App() {
   }
 
   function getSecretCombination() {
-    const maxInputLenth = 5;
+    const maxInputLength = 5;
     const secretColors = [];
+    const colorMode = getColorMode();
 
-    for (let i = 0; i < maxInputLenth; i++) {
-      const randomIndex = Math.floor(Math.random() * COLORS_VIBRANT.length);
-      const randomColor = COLORS_VIBRANT[randomIndex];
+    for (let i = 0; i < maxInputLength; i++) {
+      const randomIndex = Math.floor(Math.random() * colorMode.length);
+      const randomColor = colorMode[randomIndex];
 
       secretColors.push(randomColor);
     }

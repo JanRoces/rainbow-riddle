@@ -81,3 +81,31 @@ export const COLORS_PASTEL = Object.values(COLOR.PASTEL);
 
 export const EMPTY_RESULT_COLOR = '#202124';
 export const EMPTY_RESULT_OUTLINE_COLOR = '#3A3A3C';
+
+export const getColorMode = () => {
+  const colorMode = localStorage.getItem('colorMode');
+
+  switch (colorMode) {
+    case 'pastel':
+      return COLORS_PASTEL;
+    default:
+      return COLORS_VIBRANT;
+  }
+};
+
+export const convertColorToCurrentMode = color => {
+  if (!color || !color.name) {
+    return color;
+  }
+
+  const currentColors = getColorMode();
+  return currentColors.find(c => c.name === color.name) || color;
+};
+
+export const convertColorsToCurrentMode = colors => {
+  if (!Array.isArray(colors)) {
+    return colors;
+  }
+
+  return colors.map(convertColorToCurrentMode);
+};

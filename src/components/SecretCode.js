@@ -1,4 +1,5 @@
 import React from 'react';
+import { convertColorToCurrentMode } from '../utils/colors';
 import '../styles/SecretCode.css';
 import { useMediaQuery } from '@mui/material';
 
@@ -8,13 +9,16 @@ function SecretCode({ secret, status }) {
   function renderSecretColors() {
     const colors = [];
 
-    secret.forEach(({ hex, name }, index) => {
+    secret.forEach((color, index) => {
+      const convertedColor = convertColorToCurrentMode(color);
+      const { hex, name } = convertedColor;
+
       colors.push(
         <div
           className={`color${isMobile ? '-mobile' : ''}`}
           key={name + index}
           style={{ backgroundColor: hex }}
-        ></div>
+        ></div>,
       );
     });
 
