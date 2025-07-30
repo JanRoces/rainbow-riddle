@@ -3,7 +3,7 @@ import ColorButton from './ColorButton';
 import ActionButton from './ActionButton';
 import { animateColorSquares } from '../utils/animation';
 import { useMediaQuery } from '@mui/material';
-import { COLORS_VIBRANT } from '../utils/colors';
+import { getColorMode } from '../utils/colors';
 import '../styles/ColorSelect.css';
 import '../styles/ActionButton.css';
 
@@ -24,7 +24,7 @@ function ColorSelection({
 
   function selectColor(symbol) {
     const letter = symbol.toUpperCase();
-    const color = COLORS_VIBRANT.find(color => color.symbol === letter);
+    const color = getColorMode().find(color => color.symbol === letter);
 
     if (color && input.length !== maxInputLength) {
       setInput([...input, color]);
@@ -133,15 +133,16 @@ function ColorSelection({
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [input]);
+  }, [input, currentRow, status, deleteColor, enterColors, selectColor]);
 
   function renderColorButtonsMobile() {
-    const len = COLORS_VIBRANT.length;
+    const colorMode = getColorMode();
+    const len = colorMode.length;
     const group = [];
 
     for (let i = 0; i < len; i++) {
       const color = {
-        ...COLORS_VIBRANT[i],
+        ...colorMode[i],
         isMobile: true,
       };
 
@@ -154,13 +155,14 @@ function ColorSelection({
   }
 
   function renderColorButtons() {
-    const len = COLORS_VIBRANT.length;
+    const colorMode = getColorMode();
+    const len = colorMode.length;
 
     function buttonGroup(start = 0, end = len) {
       const group = [];
 
       for (let i = start; i < end; i++) {
-        const color = COLORS_VIBRANT[i];
+        const color = colorMode[i];
 
         group.push(
           <ColorButton
